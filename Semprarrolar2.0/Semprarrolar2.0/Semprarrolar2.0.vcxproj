@@ -145,12 +145,17 @@
     <ClCompile Include="Auxiliares.cpp" />
     <ClCompile Include="Bus.cpp" />
     <ClCompile Include="Condutores.cpp" />
+    <ClCompile Include="Empresa.cpp" />
     <ClCompile Include="Linhas.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="Shift.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Semprarrolar.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="Input_Condutores.txt" />
+    <Text Include="Input_Linhas.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

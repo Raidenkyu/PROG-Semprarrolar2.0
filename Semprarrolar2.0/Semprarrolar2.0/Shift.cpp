@@ -27,6 +27,22 @@ vector <shift> bus::getSchedule(){
 	return this->schedule;
 }
 
-vector <shift> driver::getshifts() {
-	return this->shifts;
+void shift::setLinhaID(unsigned int idLinha) {
+	this->idLinha = idLinha;
+}
+
+void shift::setCondutorID(unsigned int idLinha) {
+	this->idCondutor = idCondutor;
+}
+
+void shift::setBus(unsigned int nBus) {
+	this->nBus = nBus;
+}
+
+void shift::setInicio(unsigned int inicio) {
+	this->inicio = inicio;
+}
+
+void shift:: setFim(unsigned int fim) {
+	this->fim = fim;
 }

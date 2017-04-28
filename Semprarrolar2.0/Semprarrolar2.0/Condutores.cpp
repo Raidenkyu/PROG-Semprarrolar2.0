@@ -30,6 +30,10 @@ unsigned int class_condutor::getDescanso()
 	return this->descanso;
 }
 
+vector <shift> class_condutor::getShifts() {
+	return this->shifts;
+}
+
 int condutores_menu()
 {
 	do {
