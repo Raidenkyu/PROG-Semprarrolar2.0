@@ -26,7 +26,10 @@ private:
 	vector<string> paragens;
 	vector<unsigned int> tempos;
 public:
-	getID(class_linha l1);
+	unsigned int getID();
+	unsigned int getFreq();
+	vector<string> getParagens();
+	vector<unsigned int> getTempos();
 };
 
 class class_condutor {       //class com a informação relativa a um condutor
