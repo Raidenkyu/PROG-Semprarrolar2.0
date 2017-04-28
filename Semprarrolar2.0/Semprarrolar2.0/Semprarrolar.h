@@ -1,6 +1,5 @@
 #include <vector>
 #include <string>
-#include <iostream>
 
 #ifdef _WIN32         //Para o windows reconhecer os caracteres portugueses
 #include <windows.h>
@@ -34,11 +33,17 @@ public:
 
 class class_condutor {       //class com a informação relativa a um condutor
 private:
-	int ID;
+	unsigned int ID;
 	string nome;
-	int turno;
-	int max;
-	int descanso;
+	unsigned int turno;
+	unsigned int max;
+	unsigned int descanso;
+public:
+	unsigned int getID();
+	string getNome();
+	unsigned int getTurno();
+	unsigned int getMax();
+	unsigned int getDescanso();
 };
 
 class shift { //class com a informação relativa a um turno
@@ -48,14 +53,30 @@ private:
 	unsigned int nBus;
 	unsigned int inicio;
 	unsigned fim;
+public: 
+	unsigned int getLinha();
+	unsigned int getCondutor();
+	unsigned int getBus();
+	unsigned int getInicio();
+	unsigned int getFim();
 };
 
-class Bus {//class com a informação de todos os turnos de um autocarro
+class bus {//class com a informação de todos os turnos de um autocarro
 private:
 	vector <shift> schedule;
+public:
+	vector <shift> getSchedule();
 };
 
-class Driver {//class com todos os turnos de um condutor
+class driver {//class com todos os turnos de um condutor
 private:
 	vector <shift> shifts;
+public:
+	vector <shift> getshifts();
 };
+
+extern vector <class_linha> vector_linhas;
+extern vector <class_condutor> vector_condutores;
+
+int linhas_menu();
+int condutores_menu();

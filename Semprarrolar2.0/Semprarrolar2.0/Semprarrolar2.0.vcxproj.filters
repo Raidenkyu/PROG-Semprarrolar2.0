@@ -27,6 +27,12 @@
     <ClCompile Include="Auxiliares.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Shift.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Bus.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Semprarrolar.h">

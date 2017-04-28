@@ -1,3 +1,4 @@
+#include <iostream>
 #include "Semprarrolar.h"
 
 using namespace std;
@@ -33,10 +34,10 @@ int menu_principal()
 		switch (op)
 		{
 		case 1:
-			//linhas_menu();
+			linhas_menu();
 			break;
 		case 2:
-			//condutores_menu();
+			condutores_menu();
 			break;
 		case 3:
 			//horarios_menu();
@@ -73,5 +74,8 @@ int menu_principal()
 
 int main()
 {
+	SetPTchar();
+	menu_principal();
+	cin.get();
 	return 0;
 }
