@@ -1,9 +1,10 @@
 #include <iostream>
 #include "Semprarrolar.h"
+#include <fstream>
+#include <sstream>
 
 using namespace std;
 
-vector <class_condutor> vector_condutores;
 
 unsigned int class_condutor::getID()
 {
@@ -32,6 +33,57 @@ unsigned int class_condutor::getDescanso()
 
 vector <shift> class_condutor::getShifts() {
 	return this->shifts;
+}
+
+void class_condutor::setCondutor(unsigned int ID, string nome, unsigned int turno, unsigned int max, unsigned int descanso)
+{
+	this->ID = ID;
+	this->nome = nome;
+	this->turno = turno;
+	this->max = max;
+	this->descanso = descanso;
+}
+
+vector<class_condutor> ler_condutores(string drivers_filename)
+{
+	ifstream drivers_file(drivers_filename);
+	char comma;
+	unsigned int ID, turno, max, descanso;
+	string line;
+	string nome;
+	string sturno;
+	string smax;
+	string sdescanso;
+	stringstream ss1;
+	vector<class_condutor> vector_condutores;
+	class_condutor c1;
+	if (drivers_file.is_open())
+	{
+		while (getline(drivers_file, line))
+		{
+			ss1.str(line);
+			ss1 >> ID >> comma;
+			getline(ss1, nome, ';');
+			nome = nome.substr(nome.find_first_not_of(' '), nome.find_last_not_of(' '));
+			getline(ss1, sturno, ';');
+			turno = stoi(sturno);
+			getline(ss1, smax, ';');
+			max = stoi(smax);
+			getline(ss1, sdescanso);
+			descanso = stoi(sdescanso);
+			c1.setCondutor(ID, nome, turno, max, descanso);
+			vector_condutores.push_back(c1);
+			ss1.clear();
+		}
+	}
+	else
+	{
+		clearScreen();
+		cout << "Erro. Não foi possível abrir o ficheiro dos condutores" << endl;
+		cout << "Pressione Enter para continuar" << endl;
+		cin.get();
+	}
+	return vector_condutores;
 }
 
 int condutores_menu()

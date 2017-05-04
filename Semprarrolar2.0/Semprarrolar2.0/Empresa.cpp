@@ -3,13 +3,25 @@
 
 using namespace std;
 
-Empresa::Empresa(string nome, string fichCondutores = "Input_Condutores.txt", string fichLinhas = "Input_Linhas.txt")
+Empresa::Empresa(string nome, string fichCondutores, string fichLinhas)
 {
-	this->nome = nome;
+	nome_empresa = nome;
+	vector_condutores = ler_condutores(fichCondutores);
+	vector_linhas = ler_linhas(fichLinhas);
+}
+
+void Empresa::setLinhas(vector <class_linha> vector_linhas)
+{
+	this->vector_linhas = vector_linhas;
+}
+
+void Empresa::setCondutores(vector <class_condutor> vector_condutores)
+{
+	this->vector_condutores = vector_condutores;
 }
 
 string Empresa::getNome() {
-	return this->nome;
+	return this->nome_empresa;
 }
 
 void Empresa::distribuiServico() {

@@ -3,6 +3,7 @@
 
 using namespace std;
 
+Empresa semprarrolar("Semprarrolar", "Input_Condutores.txt", "Input_Linhas.txt");
 int hora_inicial = 7;  //variáveis globais para todos os .cpp
 int hora_final = 19;   //Definem a hora inicial de trabalho de todas as linha e a hora em que encerram
 
