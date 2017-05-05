@@ -36,6 +36,9 @@
     <ClCompile Include="Empresa.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Horario.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Semprarrolar.h">

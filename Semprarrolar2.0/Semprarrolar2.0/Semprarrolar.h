@@ -17,8 +17,8 @@
 using namespace std;
 
 #pragma once
-
-class shift { //class com a informação relativa a um turno
+//class com a informação relativa a um turno
+class shift { 
 private:
 	unsigned int idLinha;
 	unsigned int idCondutor;
@@ -39,8 +39,8 @@ public:
 	void setInicio(unsigned int inicio);
 	void setFim(unsigned int fim);
 };
-
-class class_linha {        //class com a informação relativa a uma linha
+//class com a informação relativa a uma linha
+class class_linha {        
 private:
 	unsigned int ID;
 	unsigned int freq;
@@ -55,8 +55,8 @@ public:
 	//Funções set
 	void setLinha(unsigned int ID, unsigned int freq, vector<string> paragens, vector<unsigned int> tempos);
 };
-
-class class_condutor {       //class com a informação relativa a um condutor
+//class com a informação relativa a um condutor
+class class_condutor {      
 private:
 	unsigned int ID;
 	string nome;
@@ -75,8 +75,8 @@ public:
 	//Funções set
 	void setCondutor(unsigned int ID, string nome, unsigned int turno, unsigned int max, unsigned int descanso);
 };
-
-class bus {//class com a informação de todos os turnos de um autocarro
+//class com a informação de todos os turnos de um autocarro
+class bus {
 private:
 	unsigned int nBus;
 	unsigned int idCondutor;
@@ -113,3 +113,4 @@ int linhas_menu();
 int condutores_menu();
 vector<class_linha> ler_linhas(string lines_filename);
 vector<class_condutor> ler_condutores(string drivers_filename);
+int proc_paragem(vector<string> &v, string paragem);

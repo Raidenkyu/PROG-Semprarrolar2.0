@@ -146,6 +146,7 @@
     <ClCompile Include="Bus.cpp" />
     <ClCompile Include="Condutores.cpp" />
     <ClCompile Include="Empresa.cpp" />
+    <ClCompile Include="Horario.cpp" />
     <ClCompile Include="Linhas.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="Shift.cpp" />

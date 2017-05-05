@@ -2,7 +2,7 @@
 #include "Semprarrolar.h"
 
 using namespace std;
-
+// Definir Empresa
 Empresa::Empresa(string nome, string fichCondutores, string fichLinhas)
 {
 	nome_empresa = nome;

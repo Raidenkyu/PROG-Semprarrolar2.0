@@ -5,36 +5,32 @@
 
 using namespace std;
 
-
+// Obter informação (get)------------------------------------------------------------------------------
 unsigned int class_condutor::getID()
 {
 	return this->ID;
 }
-
 string class_condutor::getNome()
 {
 	return this->nome;
 }
-
 unsigned int class_condutor::getTurno()
 {
 	return this->turno;
 }
-
 unsigned int class_condutor::getMax()
 {
 	return this->max;
 }
-
 unsigned int class_condutor::getDescanso()
 {
 	return this->descanso;
 }
-
 vector <shift> class_condutor::getShifts() {
 	return this->shifts;
 }
-
+//----------------------------------------------------------------------------------------------------
+// Definir condutor
 void class_condutor::setCondutor(unsigned int ID, string nome, unsigned int turno, unsigned int max, unsigned int descanso)
 {
 	this->ID = ID;
@@ -44,6 +40,7 @@ void class_condutor::setCondutor(unsigned int ID, string nome, unsigned int turn
 	this->descanso = descanso;
 }
 
+// Passar inf do ficheiro todo para classes. Devolve um vector de classes de condutores
 vector<class_condutor> ler_condutores(string drivers_filename)
 {
 	ifstream drivers_file(drivers_filename);
@@ -85,12 +82,12 @@ vector<class_condutor> ler_condutores(string drivers_filename)
 	}
 	return vector_condutores;
 }
-
+// Imprimir condutor mandando uma class de condutor
 void visualizar_condutor(class_condutor c1)
 {
 	cout << c1.getID() << " ; " << c1.getNome() << " ; " << c1.getTurno() << " ; " << c1.getMax() << " ; " << c1.getDescanso() << endl;
 }
-
+// Menu condutores
 int condutores_menu()
 {
 	do {
