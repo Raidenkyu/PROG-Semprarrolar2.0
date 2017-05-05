@@ -98,6 +98,8 @@ public:
 	Empresa(string nome, string fichCondutores, string fichLinhas); //Não percebi bem, vê se consegues tu
 	// metodos get
 	string getNome();
+	vector <class_linha> getLinhas();
+	vector <class_condutor> getCondutores();
 	// metodos set
 	void setLinhas(vector <class_linha> vector_linhas);
 	void setCondutores(vector <class_condutor> vector_condutores);

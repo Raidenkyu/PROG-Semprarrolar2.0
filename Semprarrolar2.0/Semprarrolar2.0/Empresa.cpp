@@ -10,6 +10,16 @@ Empresa::Empresa(string nome, string fichCondutores, string fichLinhas)
 	vector_linhas = ler_linhas(fichLinhas);
 }
 
+vector <class_linha> Empresa::getLinhas()
+{
+	return this->vector_linhas;
+}
+
+vector <class_condutor> Empresa::getCondutores()
+{
+	return this->vector_condutores;
+}
+
 void Empresa::setLinhas(vector <class_linha> vector_linhas)
 {
 	this->vector_linhas = vector_linhas;

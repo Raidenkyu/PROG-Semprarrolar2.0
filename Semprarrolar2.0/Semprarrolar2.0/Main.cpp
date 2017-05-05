@@ -80,5 +80,3 @@ int main()
 	cin.get();
 	return 0;
 }
-
-//Teste de merdas
