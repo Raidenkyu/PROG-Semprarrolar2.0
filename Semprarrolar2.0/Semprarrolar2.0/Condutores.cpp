@@ -86,6 +86,11 @@ vector<class_condutor> ler_condutores(string drivers_filename)
 	return vector_condutores;
 }
 
+void visualizar_condutor(class_condutor c1)
+{
+	cout << c1.getID() << " ; " << c1.getNome() << " ; " << c1.getTurno() << " ; " << c1.getMax() << " ; " << c1.getDescanso() << endl;
+}
+
 int condutores_menu()
 {
 	do {

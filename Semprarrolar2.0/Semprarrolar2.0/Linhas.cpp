@@ -120,6 +120,23 @@ vector<class_linha> ler_linhas(string lines_filename)
 	return vector_linhas;
 }
 
+void visualizar_linha(class_linha l1) //Função em que o argumento é uma struct de uma linha e faz um output com a sua informação
+{                                      //Deste modo pode-se reaproveitar código
+	cout << l1.getID() << " ; " << l1.getFreq() << " ; ";
+	for (int j = 0; j < l1.getParagens().size(); j++)
+	{
+		if (j == l1.getParagens().size() - 1)
+			cout << l1.getParagens().at(j) << "; ";
+		else cout << l1.getParagens().at(j) << ", ";
+	}
+	for (int j = 0; j < l1.getTempos().size(); j++)
+	{
+		if (j == l1.getTempos().size() - 1)
+			cout << l1.getTempos().at(j) << endl;
+		else cout << l1.getTempos().at(j) << ", ";
+	}
+}
+
 int linhas_menu() //Mini-interface que permite ao utilizador escolher a função que pretende
 {
 	do {
