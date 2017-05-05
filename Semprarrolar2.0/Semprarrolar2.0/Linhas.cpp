@@ -4,27 +4,26 @@
 #include "Semprarrolar.h"
 
 using namespace std;
-
+// Obter Informação ---------------------------------------------------------------------------
 unsigned int class_linha::getID()
 {
 	return this->ID;
 }
-
 unsigned int class_linha::getFreq()
 {
 	return this->freq;
 }
-
 vector<string> class_linha::getParagens()
 {
 	return this->paragens;
 }
-
 vector<unsigned int> class_linha::getTempos()
 {
 	return this->tempos;
 }
+//---------------------------------------------------------------------------------------------
 
+//Definir Linha
 void class_linha::setLinha(unsigned int ID, unsigned int freq, vector<string> paragens, vector<unsigned int> tempos)
 {
 	this->ID = ID;
@@ -33,6 +32,7 @@ void class_linha::setLinha(unsigned int ID, unsigned int freq, vector<string> pa
 	this->tempos = tempos;
 }
 
+// Num Vector de linhas guardar a informação toda do ficheiro linhas
 vector<class_linha> ler_linhas(string lines_filename)
 {
 	ifstream Lines_file(lines_filename);
@@ -120,6 +120,7 @@ vector<class_linha> ler_linhas(string lines_filename)
 	return vector_linhas;
 }
 
+// Imprimir um Linha
 void visualizar_linha(class_linha l1) //Função em que o argumento é uma struct de uma linha e faz um output com a sua informação
 {                                      //Deste modo pode-se reaproveitar código
 	cout << l1.getID() << " ; " << l1.getFreq() << " ; ";
@@ -136,9 +137,10 @@ void visualizar_linha(class_linha l1) //Função em que o argumento é uma struct d
 		else cout << l1.getTempos().at(j) << ", ";
 	}
 }
-
-void cria_linha() //Permite criar uma nova struct_linha onde o utlizador preenche os parametros,
-{                 //para depois fazer push para o vetor das linhas
+/*Permite criar uma nova struct_linha onde o utlizador preenche os parametros,
+para depois fazer push para o vetor das linhas*/
+void cria_linha() 
+{                 
 	clearScreen();
 	class_linha l1;
 	string paragem;

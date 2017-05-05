@@ -1,3 +1,10 @@
+/*
+
+
+
+
+
+*/
 #include <iostream>
 #include "Semprarrolar.h"
 
@@ -78,8 +85,4 @@ int main()
 	menu_principal();
 	cin.get();
 	return 0;
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> master
