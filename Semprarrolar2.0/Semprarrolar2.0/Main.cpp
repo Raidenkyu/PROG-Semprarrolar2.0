@@ -1,6 +1,6 @@
 #include <iostream>
 #include "Semprarrolar.h"
-
+//teste aleatorio 
 using namespace std;
 
 Empresa semprarrolar("Semprarrolar", "Input_Condutores.txt", "Input_Linhas.txt");
