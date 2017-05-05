@@ -137,6 +137,118 @@ void visualizar_linha(class_linha l1) //Função em que o argumento é uma struct d
 	}
 }
 
+void cria_linha() //Permite criar uma nova struct_linha onde o utlizador preenche os parametros,
+{                 //para depois fazer push para o vetor das linhas
+	clearScreen();
+	class_linha l1;
+	string paragem;
+	unsigned int ID, freq, tempo;
+	vector<string> vector_paragens;
+	vector<unsigned int> vector_tempos;
+	vector <class_linha> vector_linhas = semprarrolar.getLinhas();
+	char r; //Resposta à confirmação da criação da linha
+	while (true)
+	{
+		cout << "Indique o ID da linha que pretende criar: ";
+		cin >> ID;
+		if (cin.good())
+			break;
+		else
+		{
+			cin.clear();
+			cin.ignore(INT_MAX, '\n');
+			cout << "Erro. Introduziu um valor inválido. Só pode introduzir números inteiros" << endl;
+		}
+	}
+	while (true)
+	{
+		cout << "Indique a frequência com que passam os autocarros da linha que pretende criar: ";
+		cin >> freq;
+		if (cin.good())
+			break;
+		else
+		{
+			cin.clear();
+			cin.ignore(INT_MAX, '\n');
+			cout << "Erro. Introduziu um valor inválido. Só pode introduzir números inteiros" << endl;
+		}
+	}
+	cin.ignore(INT_MAX, '\n');
+	cout << "Indique as paragens da linha que pretende criar. Faça CTRL+Z em windows e CTRL+C para terminar " << endl;
+	for (int i = 0; !cin.eof(); i++)
+	{
+		cout << i + 1 << "ª paragem: ";
+		getline(cin, paragem);
+		if (cin.eof())
+		{
+			cin.clear();
+			break;
+		}
+		if (cin.fail() && !cin.eof())
+		{
+			cin.clear();
+			cin.ignore(INT_MAX, '\n');
+			cout << "Erro. Introduziu um valor inválido. Só pode introduzir frases" << endl;
+		}
+		vector_paragens.push_back(paragem);
+	}
+	cin.clear();
+	cout << "Indique os tempos das viagens da linha que pretende criar" << endl;
+	for (int i = 0; i < (vector_paragens.size() - 1); i++)
+	{
+		cout << "Duração entre " << vector_paragens.at(i) << " -> " << vector_paragens.at(i + 1) << " : ";
+		cin >> tempo;
+		if (cin.eof())
+			break;
+		if (cin.fail() && !cin.eof())
+		{
+			cin.clear();
+			cin.ignore(INT_MAX, '\n');
+			cout << "Erro. Introduziu um valor inválido. Só pode introduzir números inteiros" << endl;
+		}
+		vector_tempos.push_back(tempo);
+	}
+	cin.clear();
+	while (true)
+	{
+		clearScreen();
+		cout << "Pretende criar a seguinte linha(S/N):" << endl << endl;
+		visualizar_linha(l1);
+		cout << "Confirmar: ";
+		cin >> r;
+		cout << endl;
+		if (r == 'S' || r == 's')
+		{
+			vector_linhas.push_back(l1);
+			semprarrolar.setLinhas(vector_linhas);
+			cout << "Linha criada com sucesso" << endl;
+			cout << "Pressione Enter para regressar ao menu linhas" << endl;
+			cin.get();
+			cin.get();
+			clearScreen();
+			break;
+		}
+		else if (r == 'N' || r == 'n')
+		{
+			cout << "Operação abortada" << endl;
+			cout << "Pressione Enter para regressar ao menu linhas" << endl;
+			cin.get();
+			cin.get();
+			clearScreen();
+			break;
+		}
+		else
+		{
+			cin.clear();
+			cin.ignore();
+			cout << "Resposta Inválida. Só pode responder S(sim) ou N(não)" << endl;
+			cin.get();
+			cin.get();
+			clearScreen();
+		}
+	}
+}
+
 int linhas_menu() //Mini-interface que permite ao utilizador escolher a função que pretende
 {
 	do {
