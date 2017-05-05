@@ -57,4 +57,16 @@ int proc_linha(vector<class_linha> &v, int ID) {
 	}
 	return -1;
 }
+// String Lowcase para Uppercase
+string toUpper(string palavra)
+{
+	for (int i = 0; i < palavra.size(); i++)
+	{
+		if (palavra.at(i) >= 97 && palavra.at(i) <= 122) // todos os caracteres que estão em letra minuscula
+		{
+			palavra.at(i) = palavra.at(i) - 32; // segundo a tabela ascii a distancia que 'a' esta de 'A' é de 32
+		}
+	}
+	return palavra;
+}
 

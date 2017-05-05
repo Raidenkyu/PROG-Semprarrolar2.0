@@ -47,7 +47,7 @@ int menu_principal()
 			condutores_menu();
 			break;
 		case 3:
-			//horarios_menu();
+			horarios_menu();
 			break;
 		case 4:
 			//menu_trabalho();

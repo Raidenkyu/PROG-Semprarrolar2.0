@@ -116,3 +116,5 @@ int condutores_menu();
 vector<class_linha> ler_linhas(string lines_filename);
 vector<class_condutor> ler_condutores(string drivers_filename);
 int proc_paragem(vector<string> &v, string paragem);
+int horarios_menu();
+string toUpper(string palavra);
