@@ -54,6 +54,10 @@ public:
 	vector<unsigned int> getTempos();
 	//Funções set
 	void setLinha(unsigned int ID, unsigned int freq, vector<string> paragens, vector<unsigned int> tempos);
+	void setID(unsigned int ID);
+	void setFreq(unsigned int freq);
+	void setParagens(vector<string> paragens);
+	void setTempos(vector<unsigned int> tempos);
 };
 //class com a informação relativa a um condutor
 class class_condutor {      

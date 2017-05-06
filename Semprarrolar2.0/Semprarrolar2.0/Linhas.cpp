@@ -23,6 +23,25 @@ vector<unsigned int> class_linha::getTempos()
 }
 //---------------------------------------------------------------------------------------------
 
+//Modificar os parâmetros----------------------------------------------------------------------
+void class_linha::setID(unsigned int ID)
+{
+	this->ID = ID;
+}
+void class_linha::setFreq(unsigned int freq)
+{
+	this->freq = freq;
+}
+void class_linha::setParagens(vector<string> paragens)
+{
+	this->paragens = paragens;
+}
+void class_linha::setTempos(vector<unsigned int> tempos)
+{
+	this->tempos = tempos;
+}
+//---------------------------------------------------------------------------------------------
+
 //Definir Linha
 void class_linha::setLinha(unsigned int ID, unsigned int freq, vector<string> paragens, vector<unsigned int> tempos)
 {
@@ -251,6 +270,189 @@ void cria_linha()
 	}
 }
 
+int menu_modifica_linhas(int i)  // Permite escolher o parâmetro a modificar da linha de indice i no vetor de linhas
+{     
+	class_linha l1 = semprarrolar.getLinhas().at(i);  //Passar a linha para uma struct temporária                       //para o utilizador não ter o trabalho de criar uma linha nova e substituí-la
+	unsigned int freq;
+	int param;
+	unsigned int tempo;
+	vector<string> paragens = l1.getParagens();
+	vector<unsigned int> tempos = l1.getTempos();
+	vector<class_linha> vector_linhas = semprarrolar.getLinhas();
+	string paragem;
+	bool modified = false;  //Assume o valor true,quando uma modificação foi efectuada
+	char r;
+	while (true) {
+		clearScreen();
+		cout << "Linha: " << endl;
+		visualizar_linha(semprarrolar.getLinhas().at(i));
+		cout << endl;
+		cout << "+ ----------------------------------------------+" << endl;
+		cout << "| Menu Modificar                                |" << endl;
+		cout << "+-----------------------------------------------+" << endl;
+		cout << "| Selecione o parâmetro que pretende modificar: |" << endl;
+		cout << "+-----------------------------------------------+" << endl;
+		cout << "| 1. Frequência de autocarros                   |" << endl;
+		cout << "| 2. Lista de paragens                          |" << endl;
+		cout << "| 3. Lista de tempos                            |" << endl;
+		cout << "| 0. Sair                                       |" << endl;
+		cout << "+-----------------------------------------------+" << endl;
+		cout << "Opção: ";
+		cin >> param;
+		switch (param) {
+		case 1:
+			cout << "Atualize o tempo de passagem por cada autocarro: ";
+			cin >> freq;
+			modified = true;
+			l1.setFreq(freq);
+			break;
+		case 2:
+			paragens.clear();
+			tempos.clear();
+			cin.clear();
+			cin.ignore(INT_MAX, '\n');
+			cout << "Atualize a lista de paragens. Faça CTRL+Z para parar." << endl;
+			for (int j = 0; !cin.eof(); j++)
+			{
+				cout << j << "ª paragem: ";
+				getline(cin, paragem);
+				if (cin.eof())
+					break;
+				paragens.push_back(paragem);
+			}
+			cin.clear();
+			cout << "Indique a duração entre cada viagem" << endl;
+			for (int j = 0; j < l1.getParagens().size() - 1; j++)
+			{
+				cout << "Duração entre " << l1.getParagens().at(j) << " -> " << l1.getParagens().at(j + 1) << " : ";
+				cin >> tempo;
+				tempos.push_back(tempo);
+			}
+			modified = true;
+			l1.setParagens(paragens);
+			l1.setTempos(tempos);
+			break;
+		case 3:
+			tempos.clear();
+			cout << "Atualize a lista de tempos" << endl;
+			for (int j = 0; j < l1.getParagens().size() - 1; j++)
+			{
+				cout << "Duração entre " << l1.getParagens().at(j) << " -> " << l1.getParagens().at(j + 1) << " : ";
+				cin >> tempo;
+				tempos.push_back(tempo);
+			}
+			modified = true;
+			l1.setTempos(tempos);
+			break;
+		case 0:
+			clearScreen();
+			return 0;
+		default:
+			cout << "Essa opção não existe. Tente outra vez" << endl;
+			clearScreen();
+		}
+		if (cin.fail())
+		{
+			clearScreen();
+			cout << "Erro. Opção inválida. Escolha só uma das opções listadas." << endl;
+			cout << "Pressione Enter para continuar" << endl;
+			cin.clear();
+			cin.ignore(INT_MAX, '\n');
+			cin.get();
+			clearScreen();
+		}
+		if (modified)  //Verifica se o utilizador pretende mesmo gravar as atualizações
+		{
+			while (true)
+			{
+				clearScreen();
+				cout << "Pretende guardar a seguinte linha(S/N):" << endl << endl;
+				visualizar_linha(l1);
+				cout << "Confirmar: ";
+				cin >> r;
+				cout << endl;
+				if (r == 'S' || r == 's')
+				{
+					vector_linhas.at(i) = l1;
+					semprarrolar.setLinhas(vector_linhas);
+					cout << "Linha modificada com sucesso" << endl;
+					cout << "Pressione Enter para regressar ao menu linhas" << endl;
+					cin.get();
+					cin.get();
+					clearScreen();
+					return 0;
+				}
+				else if (r == 'N' || r == 'n')
+				{
+					cout << "Operação abortada" << endl;
+					cout << "Pressione Enter para regressar ao menu linhas" << endl;
+					cin.get();
+					cin.get();
+					clearScreen();
+					return 0;
+				}
+				else
+				{
+					cin.clear();
+					cin.ignore();
+					cout << "Resposta Inválida. Só pode responder S(sim) ou N(não)" << endl;
+					cin.get();
+					cin.get();
+					clearScreen();
+				}
+			}
+		}
+	}
+}
+
+int modifica_linha()   //Serve para selecionar a linha a modificar para depois proceder à sua modificação
+{
+	clearScreen();
+	int ID;
+	bool exist = false; // variavel que representa a existencia da linhas que se pretende criar
+	cout << "Para regressar faça 0 e depois ENTER" << endl;
+	cout << "Linhas existentes: " << endl;
+	for (int i = 0; i < semprarrolar.getLinhas().size(); i++)
+	{
+		visualizar_linha(semprarrolar.getLinhas().at(i));
+	}
+	cout << endl;
+	while (true)
+	{
+		cout << "ID: ";
+		cin >> ID;
+		if (cin.good())
+			break;
+		else
+		{
+			cin.clear();
+			cin.ignore(INT_MAX, '\n');
+			cout << "Erro. Introduziu um valor inválido. Só pode introduzir números inteiros" << endl;
+		}
+	}
+	if (ID == 0)
+		return 0;
+	for (int i = 0; i < semprarrolar.getLinhas().size(); i++)
+	{
+		if (semprarrolar.getLinhas().at(i).getID() == ID)
+		{
+			exist = true;
+			menu_modifica_linhas(i);
+		}
+	}
+	if (!exist)
+	{
+		cout << "Essa linha não existe tem que criar uma primeiro" << endl;
+		cout << "Presione Enter para regressar ao menu linhas" << endl;
+		cin.get();
+		cin.get();
+		clearScreen();
+	}
+	return 0;
+}
+
+
+
 int linhas_menu() //Mini-interface que permite ao utilizador escolher a função que pretende
 {
 	do {
@@ -272,10 +474,10 @@ int linhas_menu() //Mini-interface que permite ao utilizador escolher a função q
 		switch (op)
 		{
 		case 1:
-			//cria_linha();
+			cria_linha();
 			break;
 		case 2:
-			//modifica_linha();
+			modifica_linha();
 			break;
 		case 3:
 			//elimina_linha();

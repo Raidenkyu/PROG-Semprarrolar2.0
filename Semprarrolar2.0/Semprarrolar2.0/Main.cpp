@@ -1,10 +1,8 @@
-/*
-
-
-
-
-
-*/
+/* File   : Semprarrolar2.0
+Date   : 2017/04/28
+Author : JCM & JAL
+Program Purpose:
+- Escalonamento de uma empresa de autocarros*/
 #include <iostream>
 #include "Semprarrolar.h"
 
