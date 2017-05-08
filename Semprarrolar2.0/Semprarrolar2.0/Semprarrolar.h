@@ -78,6 +78,12 @@ public:
 	vector <shift> getShifts();
 	//Funções set
 	void setCondutor(unsigned int ID, string nome, unsigned int turno, unsigned int max, unsigned int descanso);
+	void setID(unsigned int ID);
+	void setNome(string nome);
+	void setTurno(unsigned int turno);
+	void setMax(unsigned int max);
+	void setDescanso(unsigned int descanso);
+	void setShifts(vector<shift> shifts);
 };
 //class com a informação de todos os turnos de um autocarro
 class bus {
@@ -96,17 +102,23 @@ public:
 class Empresa {
 private:
 	string nome_empresa;
+	string FichDrivers;
+	string FichLines;
 	vector<class_condutor> vector_condutores;
 	vector<class_linha> vector_linhas;
 public:
 	Empresa(string nome, string fichCondutores, string fichLinhas); //Não percebi bem, vê se consegues tu
 	// metodos get
 	string getNome();
+	string getFichDrivers();
+	string getFichLines();
 	vector <class_linha> getLinhas();
 	vector <class_condutor> getCondutores();
 	// metodos set
 	void setLinhas(vector <class_linha> vector_linhas);
 	void setCondutores(vector <class_condutor> vector_condutores);
+	void setFichDrivers(string FichDrivers);
+	void setFichLines(string FichLines);
 	// outros metodos
 	void distribuiServico(); // funcao que implementa a afectacao de servico(incompleta)
 };
@@ -122,3 +134,6 @@ vector<class_condutor> ler_condutores(string drivers_filename);
 int proc_paragem(vector<string> &v, string paragem);
 int horarios_menu();
 string toUpper(string palavra);
+int procurar_paragem();
+void guardar_linhas(string lines_filename);
+void guardar_condutores(string drivers_filename);

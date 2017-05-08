@@ -1,10 +1,7 @@
-﻿  Linhas.cpp
-c:\users\joao-\documents\1º ano 2º semestre\prog\projectos\semprarrolar2.0\semprarrolar2.0\semprarrolar2.0\semprarrolar2.0\linhas.cpp(146): warning C4018: '<': signed/unsigned mismatch
-c:\users\joao-\documents\1º ano 2º semestre\prog\projectos\semprarrolar2.0\semprarrolar2.0\semprarrolar2.0\semprarrolar2.0\linhas.cpp(152): warning C4018: '<': signed/unsigned mismatch
-c:\users\joao-\documents\1º ano 2º semestre\prog\projectos\semprarrolar2.0\semprarrolar2.0\semprarrolar2.0\semprarrolar2.0\linhas.cpp(218): warning C4018: '<': signed/unsigned mismatch
-c:\users\joao-\documents\1º ano 2º semestre\prog\projectos\semprarrolar2.0\semprarrolar2.0\semprarrolar2.0\semprarrolar2.0\linhas.cpp(324): warning C4018: '<': signed/unsigned mismatch
-c:\users\joao-\documents\1º ano 2º semestre\prog\projectos\semprarrolar2.0\semprarrolar2.0\semprarrolar2.0\semprarrolar2.0\linhas.cpp(337): warning C4018: '<': signed/unsigned mismatch
-c:\users\joao-\documents\1º ano 2º semestre\prog\projectos\semprarrolar2.0\semprarrolar2.0\semprarrolar2.0\semprarrolar2.0\linhas.cpp(413): warning C4018: '<': signed/unsigned mismatch
-c:\users\joao-\documents\1º ano 2º semestre\prog\projectos\semprarrolar2.0\semprarrolar2.0\semprarrolar2.0\semprarrolar2.0\linhas.cpp(433): warning C4018: '<': signed/unsigned mismatch
+﻿  Condutores.cpp
+c:\users\joao-\documents\1º ano 2º semestre\prog\projectos\semprarrolar2.0\semprarrolar2.0\semprarrolar2.0\semprarrolar2.0\condutores.cpp(360): warning C4018: '<': signed/unsigned mismatch
+c:\users\joao-\documents\1º ano 2º semestre\prog\projectos\semprarrolar2.0\semprarrolar2.0\semprarrolar2.0\semprarrolar2.0\condutores.cpp(379): warning C4018: '<': signed/unsigned mismatch
+c:\users\joao-\documents\1º ano 2º semestre\prog\projectos\semprarrolar2.0\semprarrolar2.0\semprarrolar2.0\semprarrolar2.0\condutores.cpp(414): warning C4018: '<': signed/unsigned mismatch
+c:\users\joao-\documents\1º ano 2º semestre\prog\projectos\semprarrolar2.0\semprarrolar2.0\semprarrolar2.0\semprarrolar2.0\condutores.cpp(432): warning C4018: '<': signed/unsigned mismatch
   Semprarrolar2.0.vcxproj -> C:\Users\joao-\Documents\1º Ano 2º Semestre\PROG\Projectos\Semprarrolar2.0\Semprarrolar2.0\Semprarrolar2.0\Debug\Semprarrolar2.0.exe
   Semprarrolar2.0.vcxproj -> C:\Users\joao-\Documents\1º Ano 2º Semestre\PROG\Projectos\Semprarrolar2.0\Semprarrolar2.0\Semprarrolar2.0\Debug\Semprarrolar2.0.pdb (Full PDB)

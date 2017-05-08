@@ -451,7 +451,115 @@ int modifica_linha()   //Serve para selecionar a linha a modificar para depois p
 	return 0;
 }
 
+void elimina_linha() //Remove uma linha à escolha do vetor das linhas
+{
+	clearScreen();
+	vector<class_linha> vector_linhas;
+	int ID;
+	cout << "Indique o ID da linha que pretende eliminar: ";
+	cin >> ID;
+	for (int i = 0; i < vector_linhas.size(); i++)
+	{
+		if (vector_linhas.at(i).getID() == ID)
+		{
+			vector_linhas.erase(vector_linhas.begin() + i);
+			semprarrolar.setLinhas(vector_linhas);
+			cout << "Linha eliminada com sucesso" << endl;
+		}
+	}
+	cout << "Pressione uma tecla para contiuar" << endl;
+	cin.get();
+	cin.get();
+}
 
+void guardar_linhas(string lines_filename) //Escreve o conteúdo atual do vetor das linhas no ficheiro em que foi lido
+{
+	ofstream lines_file(lines_filename);
+	vector<class_linha> vector_linhas = semprarrolar.getLinhas();
+	for (int i = 0; i < vector_linhas.size(); i++)
+	{
+		lines_file << vector_linhas.at(i).getID() << " ; " << vector_linhas.at(i).getFreq() << " ; ";
+		for (int j = 0; j < vector_linhas.at(i).getParagens().size(); j++)
+		{
+			if (j == vector_linhas.at(i).getParagens().size() - 1)
+				lines_file << vector_linhas.at(i).getParagens().at(j) << "; ";
+			else lines_file << vector_linhas.at(i).getParagens().at(j) << ", ";
+		}
+		for (int j = 0; j < vector_linhas.at(i).getTempos().size(); j++)
+		{
+			if (j == vector_linhas.at(i).getTempos().size() - 1)
+			{
+				lines_file << vector_linhas.at(i).getTempos().at(j);
+				if (i != (vector_linhas.size() - 1))
+					lines_file << endl;
+			}
+			else lines_file << vector_linhas.at(i).getTempos().at(j) << ", ";
+		}
+	}
+}
+
+bool existe_paragem(string paragem) //Procura em todos as linhas se existe uma paragem especifica
+{
+	vector<class_linha> vector_linhas = semprarrolar.getLinhas();
+	for (int i = 0; i < vector_linhas.size(); i++)
+	{
+		if (proc_paragem(vector_linhas.at(i).getParagens(), paragem) != -1)
+			return true;
+	}
+	return false;
+}
+
+int procurar_paragem()
+{
+	string paragem;
+	vector <class_linha> vector_linhas;
+	cin.clear();
+	cin.ignore(INT_MAX, '\n');
+	int repeat; //Repetir a tentativa de escrever o nome da estação
+	while (true) {
+		clearScreen();
+		bool exist = false; //variável que indica a existencia de uma paragem nas linhas que constituem a base de dados
+		cout << "Indique o nome de uma paragem, para saber em que linhas se encontra" << endl;
+		cout << "Paragem: ";
+		getline(cin, paragem);
+		cout << "Linha/s: ";
+		for (int i = 0; i < vector_linhas.size(); i++)
+		{
+			if (proc_paragem(vector_linhas.at(i).getParagens(), paragem) != -1)
+			{
+				cout << vector_linhas.at(i).getID() << ", ";
+				exist = true;
+			}
+		}
+		if (exist)
+		{
+			cout << "\b\b  " << endl << endl;
+			cout << "Pressione Enter para regressar" << endl;
+			cin.get();
+			clearScreen();
+			return 0;
+		}
+		else
+		{
+			cout << "n/a" << endl << endl;
+			cout << "A paragem que indicou não existe. Verifique se escreveu bem o seu nome" << endl;
+			cout << "Pressione 0 para sair ou qualquer outra tecla para repetir: ";
+			cin >> repeat;
+			if (repeat == 0)
+			{
+				cout << "Pressione Enter para regressar" << endl;
+				cin.get();
+				clearScreen();
+				return 0;
+			}
+			else if (repeat != 0 || cin.fail())
+			{
+				cin.clear();
+				cin.ignore(INT_MAX, '\n');
+			}
+		}
+	}
+}
 
 int linhas_menu() //Mini-interface que permite ao utilizador escolher a função que pretende
 {
@@ -480,7 +588,7 @@ int linhas_menu() //Mini-interface que permite ao utilizador escolher a função q
 			modifica_linha();
 			break;
 		case 3:
-			//elimina_linha();
+			elimina_linha();
 			break;
 		case 4:
 			break;

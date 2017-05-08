@@ -6,6 +6,8 @@ using namespace std;
 Empresa::Empresa(string nome, string fichCondutores, string fichLinhas)
 {
 	nome_empresa = nome;
+	FichDrivers = fichCondutores;
+	FichLines = fichLinhas;
 	vector_condutores = ler_condutores(fichCondutores);
 	vector_linhas = ler_linhas(fichLinhas);
 }
@@ -20,6 +22,22 @@ vector <class_condutor> Empresa::getCondutores()
 }
 string Empresa::getNome() {
 	return this->nome_empresa;
+}
+
+string Empresa::getFichDrivers(){
+	return this->FichDrivers;
+}
+
+string Empresa::getFichLines() {
+	return this->FichLines;
+}
+
+void Empresa::setFichDrivers(string FichDrivers) {
+	this->FichDrivers = FichDrivers;
+}
+
+void Empresa::setFichLines(string FichLines) {
+	this->FichLines = FichLines;
 }
 //---------------------------------------------------------------------
 //Definir os vectores

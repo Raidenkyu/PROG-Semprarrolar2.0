@@ -51,7 +51,7 @@ int menu_principal()
 			//menu_trabalho();
 			break;
 		case 5:
-			//procurar_paragem();
+			procurar_paragem();
 			break;
 		case 6:
 			//calcula_trajeto();
@@ -81,6 +81,8 @@ int main()
 {
 	SetPTchar();
 	menu_principal();
+	guardar_linhas(semprarrolar.getFichLines());
+	guardar_condutores(semprarrolar.getFichDrivers());
 	cin.get();
 	return 0;
 }
