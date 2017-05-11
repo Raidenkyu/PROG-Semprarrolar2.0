@@ -46,3 +46,17 @@ void shift::setInicio(unsigned int inicio) {
 void shift:: setFim(unsigned int fim) {
 	this->fim = fim;
 }
+
+
+//Calcula o número de autocarros necessários por linha
+int numeroBus(class_linha linha)
+{
+	int tempo = 0;
+	for (unsigned int i = 0; i < linha.getTempos().size(); i++)
+	{
+		tempo += linha.getTempos().at(i);
+	}
+	tempo *= 2;
+	int n = (int)((double)tempo / linha.getFreq() + 1.0);
+	return n;
+}
