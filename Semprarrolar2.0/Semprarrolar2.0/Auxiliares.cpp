@@ -40,7 +40,7 @@ void select_sort(vector<string> &v)    //Implementação de um overload de select 
 int proc_paragem(vector<string> &v, string paragem) { 
 	unsigned int i;                                             //No vetor das paragens de uma linha em particular 
 	for (i = 0; i < v.size(); i++) {
-		if (v.at(i) == paragem) {
+		if (toUpper(v.at(i)) == toUpper(paragem)) {
 			return i;
 		}
 	}
