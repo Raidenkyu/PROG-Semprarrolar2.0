@@ -60,3 +60,86 @@ int numeroBus(class_linha linha)
 	int n = (int)((double)tempo / linha.getFreq() + 1.0);
 	return n;
 }
+
+void condutores_linha()
+{
+	clearScreen();
+	int found;
+	int idLinha;
+	int n;
+	bool exist = false;
+	cout << "Indique uma linha para saber quantos autocarros serão necessários" << endl;
+	cout << "Linha: ";
+	cin >> idLinha;
+	for (unsigned int i = 0; i < semprarrolar.getLinhas().size(); i++)
+	{
+		if (semprarrolar.getLinhas().at(i).getID() == idLinha)
+		{
+			exist = true;
+			cout << endl << "Na linha " << semprarrolar.getLinhas().at(i).getID() << " são necessários " << numeroBus(semprarrolar.getLinhas().at(i)) << " autocarros" << endl;
+			break;
+		}
+	}
+	if (cin.fail())
+	{
+		cin.clear();
+		cin.ignore(INT_MAX, '\n');
+		cout << "Erro. O ID de uma linha só pode ser um número inteiro" << endl;
+	}
+	else if (!exist)
+		cout << endl << "A linha que indicou não se encontra registada nesta base de dados" << endl;
+	cout << "Pressione qualquer tecla para continuar" << endl;
+	cin.get();
+	cin.get();
+	clearScreen();
+}
+
+int menu_trabalho()
+{
+	clearScreen();
+	int op;
+	while (true)
+	{
+		cout << "+--------------------------------------+" << endl;
+		cout << "| Menu Trabalho                        |" << endl;
+		cout << "+--------------------------------------+" << endl;
+		cout << "| Selecione uma das seguintes opções : |" << endl;
+		cout << "+--------------------------------------+" << endl;
+		cout << "| 1. Atribuir Trabalho                 |" << endl; 
+		cout << "| 2. Listar condutores disponíveis     |" << endl; 
+		cout << "| 3. Condutores por linha              |" << endl;
+		cout << "| 0. Regressar ao Menu Principal       |" << endl;
+		cout << "+--------------------------------------+" << endl;
+		cout << endl << "Opção: ";
+		cin >> op;
+		switch (op)
+		{
+		case 1:
+			//trabalho_condutor();
+			break;
+		case 2:
+			//condutores_disponiveis();
+			break;
+		case 3:
+			condutores_linha();
+			break;
+		case 0:
+			clearScreen();
+			cout << "O programa vai encerrar." << endl;
+			cout << "Pressione Enter para fechar" << endl;
+			cin.get();
+			clearScreen();
+			return 0;
+		}
+		if (cin.fail())
+		{
+			clearScreen();
+			cout << "Erro. Opção inválida. Escolha só uma das opções listadas." << endl;
+			cout << "Pressione Enter para continuar" << endl;
+			cin.clear();
+			cin.ignore(INT_MAX, '\n');
+			cin.get();
+			clearScreen();
+		}
+	}
+}

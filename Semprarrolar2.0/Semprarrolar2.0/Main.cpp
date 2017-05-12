@@ -48,7 +48,7 @@ int menu_principal()
 			horarios_menu();
 			break;
 		case 4:
-			//menu_trabalho();
+			menu_trabalho();
 			break;
 		case 5:
 			procurar_paragem();

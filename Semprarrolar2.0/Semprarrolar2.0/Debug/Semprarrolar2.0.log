@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 ﻿  Horario.cpp
 c:\users\figor\onedrive\git\projeto\semprarrolar2.0\semprarrolar2.0\horario.cpp(28): warning C4018: '<': signed/unsigned mismatch
 c:\users\figor\onedrive\git\projeto\semprarrolar2.0\semprarrolar2.0\horario.cpp(60): warning C4018: '<': signed/unsigned mismatch
@@ -5,3 +6,7 @@ c:\users\figor\onedrive\git\projeto\semprarrolar2.0\semprarrolar2.0\horario.cpp(
 c:\users\figor\onedrive\git\projeto\semprarrolar2.0\semprarrolar2.0\horario.cpp(140): warning C4018: '<=': signed/unsigned mismatch
   Semprarrolar2.0.vcxproj -> C:\Users\figor\OneDrive\git\projeto\Semprarrolar2.0\Debug\Semprarrolar2.0.exe
   Semprarrolar2.0.vcxproj -> C:\Users\figor\OneDrive\git\projeto\Semprarrolar2.0\Debug\Semprarrolar2.0.pdb (Full PDB)
+=======
+﻿  Semprarrolar2.0.vcxproj -> C:\Users\joao-\Documents\1º Ano 2º Semestre\PROG\Projectos\Semprarrolar2.0\Semprarrolar2.0\Semprarrolar2.0\Debug\Semprarrolar2.0.exe
+  Semprarrolar2.0.vcxproj -> C:\Users\joao-\Documents\1º Ano 2º Semestre\PROG\Projectos\Semprarrolar2.0\Semprarrolar2.0\Semprarrolar2.0\Debug\Semprarrolar2.0.pdb (Full PDB)
+>>>>>>> master

@@ -129,6 +129,7 @@ extern int hora_final;
 
 int linhas_menu();
 int condutores_menu();
+int menu_trabalho();
 vector<class_linha> ler_linhas(string lines_filename);
 vector<class_condutor> ler_condutores(string drivers_filename);
 int proc_paragem(vector<string> &v, string paragem);

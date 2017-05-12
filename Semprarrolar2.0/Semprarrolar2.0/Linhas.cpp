@@ -512,10 +512,9 @@ bool existe_paragem(string paragem) //Procura em todos as linhas se existe uma p
 int procurar_paragem()
 {
 	string paragem;
-	vector <class_linha> vector_linhas;
 	cin.clear();
 	cin.ignore(INT_MAX, '\n');
-	int repeat; //Repetir a tentativa de escrever o nome da estação
+	char repeat; //Repetir a tentativa de escrever o nome da estação
 	while (true) {
 		clearScreen();
 		bool exist = false; //variável que indica a existencia de uma paragem nas linhas que constituem a base de dados
@@ -523,11 +522,11 @@ int procurar_paragem()
 		cout << "Paragem: ";
 		getline(cin, paragem);
 		cout << "Linha/s: ";
-		for (int i = 0; i < vector_linhas.size(); i++)
+		for (int i = 0; i < semprarrolar.getLinhas().size(); i++)
 		{
-			if (proc_paragem(vector_linhas.at(i).getParagens(), paragem) != -1)
+			if (proc_paragem(semprarrolar.getLinhas().at(i).getParagens(), paragem) != -1)
 			{
-				cout << vector_linhas.at(i).getID() << ", ";
+				cout << semprarrolar.getLinhas().at(i).getID() << ", ";
 				exist = true;
 			}
 		}
@@ -544,15 +543,13 @@ int procurar_paragem()
 			cout << "n/a" << endl << endl;
 			cout << "A paragem que indicou não existe. Verifique se escreveu bem o seu nome" << endl;
 			cout << "Pressione 0 para sair ou qualquer outra tecla para repetir: ";
-			cin >> repeat;
-			if (repeat == 0)
+			cin.get(repeat);
+			if (repeat == '0')
 			{
-				cout << "Pressione Enter para regressar" << endl;
-				cin.get();
 				clearScreen();
 				return 0;
 			}
-			else if (repeat != 0 || cin.fail())
+			else if (repeat != '0' || cin.fail())
 			{
 				cin.clear();
 				cin.ignore(INT_MAX, '\n');
