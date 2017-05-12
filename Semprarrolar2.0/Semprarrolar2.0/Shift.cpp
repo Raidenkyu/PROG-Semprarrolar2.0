@@ -1,4 +1,5 @@
 #include <iostream>
+#include <iomanip>
 #include "Semprarrolar.h"
 
 using namespace std;
@@ -64,9 +65,7 @@ int numeroBus(class_linha linha)
 void condutores_linha()
 {
 	clearScreen();
-	int found;
 	int idLinha;
-	int n;
 	bool exist = false;
 	cout << "Indique uma linha para saber quantos autocarros serão necessários" << endl;
 	cout << "Linha: ";
@@ -94,6 +93,46 @@ void condutores_linha()
 	clearScreen();
 }
 
+void visualizar_trabalho(class_condutor c1)
+{
+	clearScreen();
+	int hi, hf, mi, mf;
+	cout << "+-------------+----------------+-----------------+----------------+-------------+" << endl;
+	cout << "| ID da Linha | ID do Condutor | Nº do autocarro | Hora de inicio | Hora do fim |" << endl;
+	cout << "+-------------+----------------+-----------------+----------------+-------------+" << endl;
+	for (unsigned int i = 0; i < c1.getShifts().size(); i++)
+	{
+		hi = c1.getShifts().at(i).getInicio() / 60;
+		mi = c1.getShifts().at(i).getInicio() % 60;
+		hf = c1.getShifts().at(i).getFim() / 60;
+		mf = c1.getShifts().at(i).getFim() % 60;
+		cout << "| " << setw(11) << c1.getShifts().at(i).getLinha() << " | "
+			<< setw(14) << c1.getShifts().at(i).getCondutor() << " | "
+			<< setw(15) << c1.getShifts().at(i).getBus() << " | "
+			<< setw(7) << hi << ":" << setw(6) << mi << " | "
+			<< setw(5) << hf << ":" << setw(5) << mf << " |" << endl;
+	}
+}
+
+void trabalho_condutor()
+{
+	clearScreen();
+	int idCondutor, hi, hf, mi, mf;
+	bool exist = false;
+	cout << "Indique um condutor para poder vizualizar o seu trabalho e modificar" << endl;
+	cout << "ID do Condutor: ";
+	cin >> idCondutor;
+	for (unsigned int i = 0; i < semprarrolar.getCondutores().size(); i++)
+	{
+		if (semprarrolar.getCondutores().at(i).getID() == idCondutor)
+		{
+			exist = true;
+			visualizar_trabalho(semprarrolar.getCondutores().at(i));
+
+		}
+	}
+}
+
 int menu_trabalho()
 {
 	clearScreen();
@@ -105,7 +144,7 @@ int menu_trabalho()
 		cout << "+--------------------------------------+" << endl;
 		cout << "| Selecione uma das seguintes opções : |" << endl;
 		cout << "+--------------------------------------+" << endl;
-		cout << "| 1. Atribuir Trabalho                 |" << endl; 
+		cout << "| 1. Ver e Atribuir Trabalho           |" << endl; 
 		cout << "| 2. Listar condutores disponíveis     |" << endl; 
 		cout << "| 3. Condutores por linha              |" << endl;
 		cout << "| 0. Regressar ao Menu Principal       |" << endl;
@@ -115,7 +154,7 @@ int menu_trabalho()
 		switch (op)
 		{
 		case 1:
-			//trabalho_condutor();
+			trabalho_condutor();
 			break;
 		case 2:
 			//condutores_disponiveis();
