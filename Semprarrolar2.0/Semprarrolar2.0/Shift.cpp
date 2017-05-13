@@ -1,5 +1,6 @@
 #include <iostream>
 #include <iomanip>
+#include <cmath>
 #include "Semprarrolar.h"
 
 using namespace std;
@@ -24,10 +25,6 @@ unsigned int shift::getFim(){
 	return this->fim;
 }
 
-vector <shift> bus::getSchedule(){
-	return this->schedule;
-}
-
 void shift::setLinhaID(unsigned int idLinha) {
 	this->idLinha = idLinha;
 }
@@ -49,50 +46,7 @@ void shift:: setFim(unsigned int fim) {
 }
 
 
-//Calcula o número de autocarros necessários por linha
-int numeroBus(class_linha linha)
-{
-	int tempo = 0;
-	for (unsigned int i = 0; i < linha.getTempos().size(); i++)
-	{
-		tempo += linha.getTempos().at(i);
-	}
-	tempo *= 2;
-	int n = (int)((double)tempo / linha.getFreq() + 1.0);
-	return n;
-}
-
-void condutores_linha()
-{
-	clearScreen();
-	int idLinha;
-	bool exist = false;
-	cout << "Indique uma linha para saber quantos autocarros serão necessários" << endl;
-	cout << "Linha: ";
-	cin >> idLinha;
-	for (unsigned int i = 0; i < semprarrolar.getLinhas().size(); i++)
-	{
-		if (semprarrolar.getLinhas().at(i).getID() == idLinha)
-		{
-			exist = true;
-			cout << endl << "Na linha " << semprarrolar.getLinhas().at(i).getID() << " são necessários " << numeroBus(semprarrolar.getLinhas().at(i)) << " autocarros" << endl;
-			break;
-		}
-	}
-	if (cin.fail())
-	{
-		cin.clear();
-		cin.ignore(INT_MAX, '\n');
-		cout << "Erro. O ID de uma linha só pode ser um número inteiro" << endl;
-	}
-	else if (!exist)
-		cout << endl << "A linha que indicou não se encontra registada nesta base de dados" << endl;
-	cout << "Pressione qualquer tecla para continuar" << endl;
-	cin.get();
-	cin.get();
-	clearScreen();
-}
-
+//Imprime o trabalho de um condutor sob a forma de tabela
 void visualizar_trabalho(class_condutor c1)
 {
 	clearScreen();
@@ -114,6 +68,9 @@ void visualizar_trabalho(class_condutor c1)
 	}
 }
 
+
+//Função que permite atribuir trabalho a um condutor
+//Incompleta, deixar para o fim
 void trabalho_condutor()
 {
 	clearScreen();
@@ -122,6 +79,7 @@ void trabalho_condutor()
 	cout << "Indique um condutor para poder vizualizar o seu trabalho e modificar" << endl;
 	cout << "ID do Condutor: ";
 	cin >> idCondutor;
+	cout << "Trabalho do condutor indicado: " << endl;
 	for (unsigned int i = 0; i < semprarrolar.getCondutores().size(); i++)
 	{
 		if (semprarrolar.getCondutores().at(i).getID() == idCondutor)
@@ -130,6 +88,32 @@ void trabalho_condutor()
 			visualizar_trabalho(semprarrolar.getCondutores().at(i));
 
 		}
+	}
+}
+
+//Devolve true se ainda puder receber trabalho e false se já tem a semana preenchida
+bool disponivel(class_condutor c1)
+{
+	int tempo = 0;
+	for (unsigned int i = 0; i < c1.getShifts().size(); i++)
+	{
+		tempo += c1.getShifts().at(i).getFim() - c1.getShifts().at(i).getInicio();
+	}
+	tempo *= 7;
+	tempo = (int) ceil(((double) tempo) / 60);
+	if (tempo >= c1.getMax())
+		return false;
+	else return true;
+}
+
+void condutores_disponiveis()
+{
+	clearScreen();
+	cout << "Estes são os condutores que ainda estão disponíveis para atribuir trabalho: " << endl;
+	for (unsigned int i = 0; i < semprarrolar.getCondutores().size(); i++)
+	{
+		if (disponivel(semprarrolar.getCondutores().at(i)))
+			visualizar_condutor(semprarrolar.getCondutores().at(i));
 	}
 }
 
@@ -157,10 +141,10 @@ int menu_trabalho()
 			trabalho_condutor();
 			break;
 		case 2:
-			//condutores_disponiveis();
+			condutores_disponiveis();
 			break;
 		case 3:
-			condutores_linha();
+			//condutores_linha();
 			break;
 		case 0:
 			clearScreen();
