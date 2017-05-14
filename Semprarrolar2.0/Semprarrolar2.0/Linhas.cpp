@@ -737,7 +737,8 @@ int calcula_trajeto() //Indica para duas paragens as paragens intermédias e o te
 				}
 			}
 		}
-		select_sort(trajetos);
+		if(poss)
+			select_sort(trajetos);
 		for (unsigned int i = 0; i < trajetos.size(); i++)
 		{
 			visualizar_trajeto(trajetos.at(i));
