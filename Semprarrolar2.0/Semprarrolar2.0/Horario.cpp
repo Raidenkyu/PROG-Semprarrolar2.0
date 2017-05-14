@@ -51,7 +51,7 @@ void imprimir_horario_paragem(class_linha linhas,int indice)
 
 	cout << "Linha " << linhas.getID() << endl << "Paragem: " << linhas.getParagens().at(indice) << endl;
 
-	cout << "Horário de ida: " << endl;
+	cout << "Sentido direto: " << endl;
 	tempo1 += primeirotempo;
 	tempo2 += segundotempo;
 	freq = linhas.getFreq();
@@ -72,15 +72,6 @@ void imprimir_horario_paragem(class_linha linhas,int indice)
 			imprimirhora(hora, minuto);
 			tempo2 += freq;
 		}
-		else
-		{
-			minuto = tempo1 % 60;
-			hora = tempo1 / 60;
-			imprimirhora(hora, minuto);
-			cout << "x2 ";
-			tempo1 += freq;
-			tempo2 += freq;
-		}
 	}
 	for (unsigned int j = 1; j <= segundotempo / freq; j++)
 	{
@@ -89,7 +80,7 @@ void imprimir_horario_paragem(class_linha linhas,int indice)
 		imprimirhora(hora, minuto);
 		tempo2 += freq;
 	}
-	cout << endl << "Horário de volta: " << endl;
+	cout << endl << "Sentido inverso: " << endl;
 	primeirotempo = get_tempo_total(linhas.getTempos()) - primeirotempo;
 	segundotempo = get_tempo_total(linhas.getTempos()) + primeirotempo;
 	tempo1 = 420 + primeirotempo;
@@ -109,15 +100,6 @@ void imprimir_horario_paragem(class_linha linhas,int indice)
 			minuto = tempo2 % 60;
 			hora = tempo2 / 60;
 			imprimirhora(hora, minuto);
-			tempo2 += freq;
-		}
-		else
-		{
-			minuto = tempo1 % 60;
-			hora = tempo1 / 60;
-			imprimirhora(hora, minuto);
-			cout << "x2 ";
-			tempo1 += freq;
 			tempo2 += freq;
 		}
 	}
