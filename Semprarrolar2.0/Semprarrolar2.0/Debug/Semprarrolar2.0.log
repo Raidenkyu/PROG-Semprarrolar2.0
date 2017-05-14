@@ -1,2 +1,12 @@
-﻿  Semprarrolar2.0.vcxproj -> C:\Users\figor\OneDrive\git\projeto\Semprarrolar2.0\Debug\Semprarrolar2.0.exe
+﻿  Shift.cpp
+c:\users\figor\onedrive\git\projeto\semprarrolar2.0\semprarrolar2.0\shift.cpp(102): warning C4018: '<': signed/unsigned mismatch
+c:\users\figor\onedrive\git\projeto\semprarrolar2.0\semprarrolar2.0\shift.cpp(106): warning C4018: '<': signed/unsigned mismatch
+c:\users\figor\onedrive\git\projeto\semprarrolar2.0\semprarrolar2.0\shift.cpp(122): warning C4018: '<': signed/unsigned mismatch
+c:\users\figor\onedrive\git\projeto\semprarrolar2.0\semprarrolar2.0\shift.cpp(132): warning C4018: '>=': signed/unsigned mismatch
+c:\users\figor\onedrive\git\projeto\semprarrolar2.0\semprarrolar2.0\shift.cpp(133): warning C4018: '<': signed/unsigned mismatch
+c:\users\figor\onedrive\git\projeto\semprarrolar2.0\semprarrolar2.0\shift.cpp(135): warning C4018: '<': signed/unsigned mismatch
+c:\users\figor\onedrive\git\projeto\semprarrolar2.0\semprarrolar2.0\shift.cpp(136): warning C4018: '>': signed/unsigned mismatch
+c:\users\figor\onedrive\git\projeto\semprarrolar2.0\semprarrolar2.0\shift.cpp(145): warning C4018: '>=': signed/unsigned mismatch
+c:\users\figor\onedrive\git\projeto\semprarrolar2.0\semprarrolar2.0\shift.cpp(148): warning C4018: '<=': signed/unsigned mismatch
+  Semprarrolar2.0.vcxproj -> C:\Users\figor\OneDrive\git\projeto\Semprarrolar2.0\Debug\Semprarrolar2.0.exe
   Semprarrolar2.0.vcxproj -> C:\Users\figor\OneDrive\git\projeto\Semprarrolar2.0\Debug\Semprarrolar2.0.pdb (Full PDB)

@@ -76,6 +76,9 @@ void trabalho_condutor()
 	clearScreen();
 	int idCondutor;
 	int idlinha;
+	int idautocarro;
+	int hora1, hora2;
+	int total;
 	bool exist = false;
 	class_condutor condutor;
 	cout << "Indique um condutor para poder vizualizar o seu trabalho e modificar" << endl;
@@ -88,12 +91,90 @@ void trabalho_condutor()
 		{
 			exist = true;
 			visualizar_trabalho(semprarrolar.getCondutores().at(i));
-			condutor = semprarrolar.getCondutores.at(i);
+			condutor = semprarrolar.getCondutores().at(i);
 		}
 	}
 	cout << "Qual a linha que pretende atribuir trabalho?";
 	cin >> idlinha;
 	int existe = proc_linha(semprarrolar.getLinhas(), idlinha);
+	if (existe != -1)
+	{
+		for (int i = 0; i < semprarrolar.getLinhas().at(existe).getAutocarros().size(); i++)
+		{
+			bus autocarrinho = semprarrolar.getLinhas().at(existe).getAutocarros().at(i);
+			cout << "Autocarro " << autocarrinho.getBus() << " :" << endl;
+			for (int j = 0; j < autocarrinho.getSchedule().size(); j++)
+			{
+				cout << "Horario " << j + 1 << " : " << autocarrinho.getSchedule().at(j).getInicio() << "->" << autocarrinho.getSchedule().at(j).getFim() << endl;
+			}
+		}
+		cout << "Qual o autocarro que prentede criar um novo turno?";
+		cin >> idautocarro;
+		idautocarro--;
+		bus autocarrinho = semprarrolar.getLinhas().at(existe).getAutocarros().at(idautocarro);
+		cout << "De que horas a que horas prentede que o turno tenha?" << endl;
+		cout << "Primeira hora: ";
+		cin >> hora1;
+		cout << "Segunda hora: ";
+		cin >> hora2;
+		bool pode = true;
+		total = 0;
+		for (int i = 0; i < condutor.getShifts().size(); i++)
+		{
+			if (condutor.getShifts().at(i).getInicio() < hora1-condutor.getDescanso() && condutor.getShifts().at(i).getFim() < hora1- condutor.getDescanso());
+			else if (condutor.getShifts().at(i).getInicio() > hora2+ condutor.getDescanso() && condutor.getShifts().at(i).getFim() > hora2+ condutor.getDescanso());
+			else
+			{
+				pode = false;
+			}
+			total = total + condutor.getShifts().at(i).getFim() - condutor.getShifts().at(i).getInicio();
+		}
+		if (total >= condutor.getMax())pode = false;
+		for (int i = 0; i < autocarrinho.getSchedule().size(); i++)
+		{
+			if (autocarrinho.getSchedule().at(i).getInicio() < hora1 && autocarrinho.getSchedule().at(i).getFim() < hora1);
+			else if (autocarrinho.getSchedule().at(i).getInicio() > hora2 && autocarrinho.getSchedule().at(i).getFim() > hora2);
+			else
+			{
+				pode = false;
+			}
+		}
+		if (pode)
+		{
+			total += hora2 - hora1;
+			if (total >= condutor.getMax())pode = false;
+			else
+			{
+				if (hora2 - hora1 <= condutor.getTurno())
+				{
+					shift sf;
+					sf.setBus(autocarrinho.getBus());
+					sf.setCondutorID(condutor.getID());
+					sf.setFim(hora2);
+					sf.setInicio(hora1);
+					sf.setLinhaID(idlinha);
+					vector < shift > v1= autocarrinho.getSchedule();
+					vector < shift > v2 = condutor.getShifts();
+					v1.push_back(sf);
+					v2.push_back(sf);
+					condutor.setShifts(v2);
+					cout << "ola";
+					//FALTA ALGO AQUI E NS O QUE иииииииии╢!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+				}
+				else
+				{
+					pode = false;
+				}
+			}
+		}
+		if(pode==false)
+		{
+			cout << "O horario que inseriu jА se encontra ocupado no horario do autocarro ou do condutor." << endl;
+		}
+	}
+
+	cin.get();
+	cin.get();
 }
 
 //Devolve true se ainda puder receber trabalho e false se jА tem a semana preenchida
