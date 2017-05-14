@@ -135,22 +135,30 @@ void horario_linha()
 
 	unsigned int tempo1 = 420, tempo2 = 420;
 	int linhaid;
+	bool existe = false;
 
 	vector<class_linha> linhas = semprarrolar.getLinhas();
-
-	cout << "Qual a linha que quer ver o horário? ";
-	cin >> linhaid;
-
-	for (int i = 0; i < linhas.size(); i++)
+	while (existe == false)
 	{
-		if (linhaid==linhas.at(i).getID())
-		{
-			int tempototal = get_tempo_total(linhas.at(i).getTempos());
-			for (int j = 0; j < linhas.at(i).getParagens().size(); j++)
-			{
-				imprimir_horario_paragem(linhas.at(i), j);
-			}
+		cout << "Qual a linha que quer ver o horário? ";
+		cin >> linhaid;
 
+		for (int i = 0; i < linhas.size(); i++)
+		{
+			if (linhaid == linhas.at(i).getID())
+			{
+				int tempototal = get_tempo_total(linhas.at(i).getTempos());
+				for (int j = 0; j < linhas.at(i).getParagens().size(); j++)
+				{
+					imprimir_horario_paragem(linhas.at(i), j);
+				}
+				existe = true;
+
+			}
+		}
+		if (existe == false)
+		{
+			cout << "A linha que inseriu não existe. Porfavor volte a inserir" << endl;
 		}
 	}
 	cin.get();
@@ -160,29 +168,28 @@ void horario_linha()
 void horario_paragem()
 {
 	clearScreen();
-
-	unsigned int primeirotempo, segundotempo;
-	unsigned int tempo1=420,tempo2=420;
-	unsigned int freq;
-	int hora, minuto;
-
 	string paragemlida;
-	
+	bool existe = false;
 	vector<class_linha> linhas =  semprarrolar.getLinhas();
-
-	cin.ignore(INT_MAX, '\n');
-	cout << "Qual a paragem que quer ver o horário? ";
-	getline(cin, paragemlida);
-
-	for (int i = 0; i < linhas.size(); i++)
+	while (existe == false)
 	{
-		int indice = proc_paragem(linhas.at(i).getParagens(), paragemlida);
-		if (indice != -1)
+		cin.ignore(INT_MAX, '\n');
+		cout << "Qual a paragem que quer ver o horário? ";
+		getline(cin, paragemlida);
+		for (int i = 0; i < linhas.size(); i++)
 		{
-			imprimir_horario_paragem(linhas.at(i), indice);
+			int indice = proc_paragem(linhas.at(i).getParagens(), paragemlida);
+			if (indice != -1)
+			{
+				imprimir_horario_paragem(linhas.at(i), indice);
+				existe = true;
+			}
+		}
+		if (existe== false)
+		{
+			cout << "A paragem que inseriu não existe. Porfavor volte a inserir" << endl;
 		}
 	}
-
 	cin.get();
 
 }
