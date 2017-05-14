@@ -40,7 +40,7 @@ void select_sort(vector<string> &v)    //Implementação de um overload de select 
 int proc_paragem(vector<string> &v, string paragem) { 
 	unsigned int i;                                             //No vetor das paragens de uma linha em particular 
 	for (i = 0; i < v.size(); i++) {
-		if (v.at(i) == paragem) {
+		if (toUpper(v.at(i)) == toUpper(paragem)) {
 			return i;
 		}
 	}
@@ -60,7 +60,7 @@ int proc_linha(vector<class_linha> &v, int ID) {
 // String Lowcase para Uppercase
 string toUpper(string palavra)
 {
-	for (int i = 0; i < palavra.size(); i++)
+	for (unsigned int i = 0; i < palavra.length(); i++)
 	{
 		if (palavra.at(i) >= 97 && palavra.at(i) <= 122) // todos os caracteres que estão em letra minuscula
 		{

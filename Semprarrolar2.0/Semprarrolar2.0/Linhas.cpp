@@ -21,6 +21,11 @@ vector<unsigned int> class_linha::getTempos()
 {
 	return this->tempos;
 }
+
+vector<bus> class_linha::getAutocarros()
+{
+	return this->autocarros;
+}
 //---------------------------------------------------------------------------------------------
 
 //Modificar os parâmetros----------------------------------------------------------------------
@@ -39,6 +44,11 @@ void class_linha::setParagens(vector<string> paragens)
 void class_linha::setTempos(vector<unsigned int> tempos)
 {
 	this->tempos = tempos;
+}
+
+void class_linha::setAutocarros(vector<bus> autocarros)
+{
+	this->autocarros = autocarros;
 }
 //---------------------------------------------------------------------------------------------
 
@@ -124,6 +134,7 @@ vector<class_linha> ler_linhas(string lines_filename)
 				vector_tempos.push_back(stoi(tempo));
 			}
 			l1.setLinha(ID, freq, vector_paragens, vector_tempos);
+			atribui_autocarro(l1);
 			vector_linhas.push_back(l1);
 			vector_paragens.clear();
 			vector_tempos.clear();
@@ -230,6 +241,8 @@ void cria_linha()
 		vector_tempos.push_back(tempo);
 	}
 	cin.clear();
+	l1.setLinha(ID, freq, vector_paragens, vector_tempos);
+	atribui_autocarro(l1);
 	while (true)
 	{
 		clearScreen();

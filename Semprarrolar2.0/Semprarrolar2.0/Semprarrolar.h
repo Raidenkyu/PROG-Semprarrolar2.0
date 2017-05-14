@@ -39,6 +39,22 @@ public:
 	void setInicio(unsigned int inicio);
 	void setFim(unsigned int fim);
 };
+
+//class com a informação de todos os turnos de um autocarro
+class bus {
+private:
+	unsigned int nBus;
+	unsigned int idCondutor;
+	unsigned int idLinha;
+	vector <shift> schedule;
+public:
+	bus(unsigned int nBus, unsigned int idCondutor, unsigned int idLinha);
+	vector <shift> getSchedule();
+	unsigned int getCondutorID() const;
+	unsigned int getLinhaID() const;
+	unsigned int getBus() const;
+};
+
 //class com a informação relativa a uma linha
 class class_linha {        
 private:
@@ -46,18 +62,21 @@ private:
 	unsigned int freq;
 	vector<string> paragens;
 	vector<unsigned int> tempos;
+	vector<bus> autocarros;
 public:
 	//Funções get
 	unsigned int getID();
 	unsigned int getFreq();
 	vector<string> getParagens();
 	vector<unsigned int> getTempos();
+	vector<bus> getAutocarros();
 	//Funções set
 	void setLinha(unsigned int ID, unsigned int freq, vector<string> paragens, vector<unsigned int> tempos);
 	void setID(unsigned int ID);
 	void setFreq(unsigned int freq);
 	void setParagens(vector<string> paragens);
 	void setTempos(vector<unsigned int> tempos);
+	void setAutocarros(vector<bus> autocarros);
 };
 //class com a informação relativa a um condutor
 class class_condutor {      
@@ -84,19 +103,6 @@ public:
 	void setMax(unsigned int max);
 	void setDescanso(unsigned int descanso);
 	void setShifts(vector<shift> shifts);
-};
-//class com a informação de todos os turnos de um autocarro
-class bus {
-private:
-	unsigned int nBus;
-	unsigned int idCondutor;
-	unsigned int idLinha;
-	vector <shift> schedule;
-public:
-	bus(unsigned int nBus, unsigned int idCondutor, unsigned int idLinha);
-	vector <shift> getSchedule();
-	unsigned int getCondutorID() const;
-	unsigned int getLinhaID() const;
 };
 
 class Empresa {
@@ -130,12 +136,14 @@ extern int hora_final;
 int linhas_menu();
 int condutores_menu();
 int menu_trabalho();
-void visualizar_condutor(class_condutor c1)
+void visualizar_condutor(class_condutor c1);
 vector<class_linha> ler_linhas(string lines_filename);
 vector<class_condutor> ler_condutores(string drivers_filename);
 int proc_paragem(vector<string> &v, string paragem);
 int horarios_menu();
 string toUpper(string palavra);
 int procurar_paragem();
+void atribui_autocarro(class_linha &linha);
 void guardar_linhas(string lines_filename);
 void guardar_condutores(string drivers_filename);
+int periodo_disponivel();

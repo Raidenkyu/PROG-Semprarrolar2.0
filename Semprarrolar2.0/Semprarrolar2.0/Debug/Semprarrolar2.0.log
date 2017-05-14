@@ -3,8 +3,6 @@ c:\users\joao-\documents\1º ano 2º semestre\prog\projectos\semprarrolar2.0\sem
 c:\users\joao-\documents\1º ano 2º semestre\prog\projectos\semprarrolar2.0\semprarrolar2.0\semprarrolar2.0\semprarrolar2.0\shift.cpp(77): warning C4101: 'hi': unreferenced local variable
 c:\users\joao-\documents\1º ano 2º semestre\prog\projectos\semprarrolar2.0\semprarrolar2.0\semprarrolar2.0\semprarrolar2.0\shift.cpp(77): warning C4101: 'mf': unreferenced local variable
 c:\users\joao-\documents\1º ano 2º semestre\prog\projectos\semprarrolar2.0\semprarrolar2.0\semprarrolar2.0\semprarrolar2.0\shift.cpp(77): warning C4101: 'mi': unreferenced local variable
-c:\users\joao-\documents\1º ano 2º semestre\prog\projectos\semprarrolar2.0\semprarrolar2.0\semprarrolar2.0\semprarrolar2.0\shift.cpp(103): warning C4018: '>=': signed/unsigned mismatch
-  Bus.cpp
-  Generating Code...
+c:\users\joao-\documents\1º ano 2º semestre\prog\projectos\semprarrolar2.0\semprarrolar2.0\semprarrolar2.0\semprarrolar2.0\shift.cpp(104): warning C4018: '>=': signed/unsigned mismatch
   Semprarrolar2.0.vcxproj -> C:\Users\joao-\Documents\1º Ano 2º Semestre\PROG\Projectos\Semprarrolar2.0\Semprarrolar2.0\Semprarrolar2.0\Debug\Semprarrolar2.0.exe
   Semprarrolar2.0.vcxproj -> C:\Users\joao-\Documents\1º Ano 2º Semestre\PROG\Projectos\Semprarrolar2.0\Semprarrolar2.0\Semprarrolar2.0\Debug\Semprarrolar2.0.pdb (Full PDB)
