@@ -129,8 +129,8 @@ int menu_trabalho()
 		cout << "| Selecione uma das seguintes opções : |" << endl;
 		cout << "+--------------------------------------+" << endl;
 		cout << "| 1. Ver e Atribuir Trabalho           |" << endl; 
-		cout << "| 2. Listar condutores disponíveis     |" << endl; 
-		cout << "| 3. Listar autocarros disponíveis     |" << endl;
+		cout << "| 2. Listar trabalho dos condutores    |" << endl; 
+		cout << "| 3. Listar trabalho dos autocarros    |" << endl;
 		cout << "| 0. Regressar ao Menu Principal       |" << endl;
 		cout << "+--------------------------------------+" << endl;
 		cout << endl << "Opção: ";

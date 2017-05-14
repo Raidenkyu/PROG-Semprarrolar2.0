@@ -141,11 +141,12 @@ int periodo_disponivel()
 		{
 			visualizar_linha(semprarrolar.getLinhas().at(i));
 		}
+		cout << endl;
 		cout << "Indique o ID da linha em que se encontra o autocarro que pretende consultar" << endl;
 		cout << "Para sair digite 0 no lugar do ID" << endl;
 		while (true)
 		{
-			cout << "Indique o ID da linha onde se encontra o autocarro que pretende consultar: ";
+			cout << endl << "ID da Linha: ";
 			cin >> ID;
 			if (cin.good())
 				break;
