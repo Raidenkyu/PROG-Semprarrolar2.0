@@ -75,7 +75,9 @@ void trabalho_condutor()
 {
 	clearScreen();
 	int idCondutor;
+	int idlinha;
 	bool exist = false;
+	class_condutor condutor;
 	cout << "Indique um condutor para poder vizualizar o seu trabalho e modificar" << endl;
 	cout << "ID do Condutor: ";
 	cin >> idCondutor;
@@ -86,9 +88,12 @@ void trabalho_condutor()
 		{
 			exist = true;
 			visualizar_trabalho(semprarrolar.getCondutores().at(i));
-
+			condutor = semprarrolar.getCondutores.at(i);
 		}
 	}
+	cout << "Qual a linha que pretende atribuir trabalho?";
+	cin >> idlinha;
+	int existe = proc_linha(semprarrolar.getLinhas(), idlinha);
 }
 
 //Devolve true se ainda puder receber trabalho e false se já tem a semana preenchida

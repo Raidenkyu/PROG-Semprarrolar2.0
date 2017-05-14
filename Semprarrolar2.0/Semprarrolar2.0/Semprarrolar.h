@@ -141,6 +141,7 @@ void visualizar_condutor(class_condutor c1);
 vector<class_linha> ler_linhas(string lines_filename);
 vector<class_condutor> ler_condutores(string drivers_filename);
 int proc_paragem(vector<string> &v, string paragem);
+int proc_linha(vector<class_linha> &v, int ID);
 int horarios_menu();
 string toUpper(string palavra);
 int procurar_paragem();
