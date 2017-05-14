@@ -357,7 +357,7 @@ int modifica_condutor()
 	bool exist = false; // variavel que representa a existencia da condutores que se pretende criar
 	cout << "Para regressar faça 0 e pressione Enter" << endl;
 	cout << "Condutores existentes: " << endl;
-	for (int i = 0; i < vector_condutores.size(); i++)
+	for (unsigned int i = 0; i < vector_condutores.size(); i++)
 	{
 		visualizar_condutor(vector_condutores.at(i));
 	}
@@ -376,7 +376,7 @@ int modifica_condutor()
 	}
 	if (ID == 0)
 		return 0;
-	for (int i = 0; i < vector_condutores.size(); i++)
+	for (unsigned int i = 0; i < vector_condutores.size(); i++)
 	{
 		if (vector_condutores.at(i).getID() == ID)
 		{
@@ -411,7 +411,7 @@ void elimina_condutor()
 			clearScreen();
 		}
 	} while (cin.good());
-	for (int i = 0; i < vector_condutores.size(); i++)
+	for (unsigned int i = 0; i < vector_condutores.size(); i++)
 	{
 		if (vector_condutores.at(i).getID() == ID)
 		{
@@ -429,7 +429,7 @@ void guardar_condutores(string drivers_filename)
 {
 	vector<class_condutor> vector_condutores = semprarrolar.getCondutores();
 	ofstream drivers_file(drivers_filename);
-	for (int i = 0; i < vector_condutores.size(); i++)
+	for (unsigned int i = 0; i < vector_condutores.size(); i++)
 	{
 		drivers_file << vector_condutores.at(i).getID() << " ; " << vector_condutores.at(i).getNome() << " ; " << vector_condutores.at(i).getTurno() << " ; " << vector_condutores.at(i).getMax() << " ; " << vector_condutores.at(i).getDescanso();
 		if (i != vector_condutores.size() - 1)

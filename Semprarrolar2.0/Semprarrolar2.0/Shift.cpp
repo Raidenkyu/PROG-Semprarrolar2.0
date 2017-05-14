@@ -74,7 +74,7 @@ void visualizar_trabalho(class_condutor c1)
 void trabalho_condutor()
 {
 	clearScreen();
-	int idCondutor, hi, hf, mi, mf;
+	int idCondutor;
 	bool exist = false;
 	cout << "Indique um condutor para poder vizualizar o seu trabalho e modificar" << endl;
 	cout << "ID do Condutor: ";
@@ -94,7 +94,7 @@ void trabalho_condutor()
 //Devolve true se ainda puder receber trabalho e false se já tem a semana preenchida
 bool disponivel(class_condutor c1)
 {
-	int tempo = 0;
+	unsigned int tempo = 0;
 	for (unsigned int i = 0; i < c1.getShifts().size(); i++)
 	{
 		tempo += c1.getShifts().at(i).getFim() - c1.getShifts().at(i).getInicio();

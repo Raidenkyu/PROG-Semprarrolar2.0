@@ -25,7 +25,7 @@ void imprimirhora(int hora, int minuto)
 int get_tempo_total(vector<unsigned int> tempos)
 {
 	int total = 0;
-	for (int i = 0; i < tempos.size(); i++)
+	for (unsigned int i = 0; i < tempos.size(); i++)
 	{
 		total += tempos.at(i);
 	}
@@ -82,7 +82,7 @@ void imprimir_horario_paragem(class_linha linhas,int indice)
 			tempo2 += freq;
 		}
 	}
-	for (int j = 1; j <= segundotempo / freq; j++)
+	for (unsigned int j = 1; j <= segundotempo / freq; j++)
 	{
 		minuto = tempo2 % 60;
 		hora = tempo2 / 60;
@@ -121,7 +121,7 @@ void imprimir_horario_paragem(class_linha linhas,int indice)
 			tempo2 += freq;
 		}
 	}
-	for (int j = 1; j <= segundotempo / freq; j++)
+	for (unsigned int j = 1; j <= segundotempo / freq; j++)
 	{
 		minuto = tempo2 % 60;
 		hora = tempo2 / 60;
@@ -143,12 +143,12 @@ void horario_linha()
 		cout << "Qual a linha que quer ver o horário? ";
 		cin >> linhaid;
 
-		for (int i = 0; i < linhas.size(); i++)
+		for (unsigned int i = 0; i < linhas.size(); i++)
 		{
 			if (linhaid == linhas.at(i).getID())
 			{
 				int tempototal = get_tempo_total(linhas.at(i).getTempos());
-				for (int j = 0; j < linhas.at(i).getParagens().size(); j++)
+				for (unsigned int j = 0; j < linhas.at(i).getParagens().size(); j++)
 				{
 					imprimir_horario_paragem(linhas.at(i), j);
 				}
@@ -176,7 +176,7 @@ void horario_paragem()
 		cin.ignore(INT_MAX, '\n');
 		cout << "Qual a paragem que quer ver o horário? ";
 		getline(cin, paragemlida);
-		for (int i = 0; i < linhas.size(); i++)
+		for (unsigned int i = 0; i < linhas.size(); i++)
 		{
 			int indice = proc_paragem(linhas.at(i).getParagens(), paragemlida);
 			if (indice != -1)

@@ -154,13 +154,13 @@ vector<class_linha> ler_linhas(string lines_filename)
 void visualizar_linha(class_linha l1) //Função em que o argumento é uma struct de uma linha e faz um output com a sua informação
 {                                      //Deste modo pode-se reaproveitar código
 	cout << l1.getID() << " ; " << l1.getFreq() << " ; ";
-	for (int j = 0; j < l1.getParagens().size(); j++)
+	for (unsigned int j = 0; j < l1.getParagens().size(); j++)
 	{
 		if (j == l1.getParagens().size() - 1)
 			cout << l1.getParagens().at(j) << "; ";
 		else cout << l1.getParagens().at(j) << ", ";
 	}
-	for (int j = 0; j < l1.getTempos().size(); j++)
+	for (unsigned int j = 0; j < l1.getTempos().size(); j++)
 	{
 		if (j == l1.getTempos().size() - 1)
 			cout << l1.getTempos().at(j) << endl;
@@ -226,7 +226,7 @@ void cria_linha()
 	}
 	cin.clear();
 	cout << "Indique os tempos das viagens da linha que pretende criar" << endl;
-	for (int i = 0; i < (vector_paragens.size() - 1); i++)
+	for (unsigned int i = 0; i < (vector_paragens.size() - 1); i++)
 	{
 		cout << "Duração entre " << vector_paragens.at(i) << " -> " << vector_paragens.at(i + 1) << " : ";
 		cin >> tempo;
@@ -335,7 +335,7 @@ int menu_modifica_linhas(int i)  // Permite escolher o parâmetro a modificar da 
 			}
 			cin.clear();
 			cout << "Indique a duração entre cada viagem" << endl;
-			for (int j = 0; j < l1.getParagens().size() - 1; j++)
+			for (unsigned int j = 0; j < l1.getParagens().size() - 1; j++)
 			{
 				cout << "Duração entre " << l1.getParagens().at(j) << " -> " << l1.getParagens().at(j + 1) << " : ";
 				cin >> tempo;
@@ -348,7 +348,7 @@ int menu_modifica_linhas(int i)  // Permite escolher o parâmetro a modificar da 
 		case 3:
 			tempos.clear();
 			cout << "Atualize a lista de tempos" << endl;
-			for (int j = 0; j < l1.getParagens().size() - 1; j++)
+			for (unsigned int j = 0; j < l1.getParagens().size() - 1; j++)
 			{
 				cout << "Duração entre " << l1.getParagens().at(j) << " -> " << l1.getParagens().at(j + 1) << " : ";
 				cin >> tempo;
@@ -425,7 +425,7 @@ int modifica_linha()   //Serve para selecionar a linha a modificar para depois p
 	bool exist = false; // variavel que representa a existencia da linhas que se pretende criar
 	cout << "Para regressar faça 0 e depois ENTER" << endl;
 	cout << "Linhas existentes: " << endl;
-	for (int i = 0; i < semprarrolar.getLinhas().size(); i++)
+	for (unsigned int i = 0; i < semprarrolar.getLinhas().size(); i++)
 	{
 		visualizar_linha(semprarrolar.getLinhas().at(i));
 	}
@@ -445,7 +445,7 @@ int modifica_linha()   //Serve para selecionar a linha a modificar para depois p
 	}
 	if (ID == 0)
 		return 0;
-	for (int i = 0; i < semprarrolar.getLinhas().size(); i++)
+	for (unsigned int i = 0; i < semprarrolar.getLinhas().size(); i++)
 	{
 		if (semprarrolar.getLinhas().at(i).getID() == ID)
 		{
@@ -471,7 +471,7 @@ void elimina_linha() //Remove uma linha à escolha do vetor das linhas
 	int ID;
 	cout << "Indique o ID da linha que pretende eliminar: ";
 	cin >> ID;
-	for (int i = 0; i < vector_linhas.size(); i++)
+	for (unsigned int i = 0; i < vector_linhas.size(); i++)
 	{
 		if (vector_linhas.at(i).getID() == ID)
 		{
@@ -489,16 +489,16 @@ void guardar_linhas(string lines_filename) //Escreve o conteúdo atual do vetor d
 {
 	ofstream lines_file(lines_filename);
 	vector<class_linha> vector_linhas = semprarrolar.getLinhas();
-	for (int i = 0; i < vector_linhas.size(); i++)
+	for (unsigned int i = 0; i < vector_linhas.size(); i++)
 	{
 		lines_file << vector_linhas.at(i).getID() << " ; " << vector_linhas.at(i).getFreq() << " ; ";
-		for (int j = 0; j < vector_linhas.at(i).getParagens().size(); j++)
+		for (unsigned int j = 0; j < vector_linhas.at(i).getParagens().size(); j++)
 		{
 			if (j == vector_linhas.at(i).getParagens().size() - 1)
 				lines_file << vector_linhas.at(i).getParagens().at(j) << "; ";
 			else lines_file << vector_linhas.at(i).getParagens().at(j) << ", ";
 		}
-		for (int j = 0; j < vector_linhas.at(i).getTempos().size(); j++)
+		for (unsigned int j = 0; j < vector_linhas.at(i).getTempos().size(); j++)
 		{
 			if (j == vector_linhas.at(i).getTempos().size() - 1)
 			{
@@ -514,7 +514,7 @@ void guardar_linhas(string lines_filename) //Escreve o conteúdo atual do vetor d
 bool existe_paragem(string paragem) //Procura em todos as linhas se existe uma paragem especifica
 {
 	vector<class_linha> vector_linhas = semprarrolar.getLinhas();
-	for (int i = 0; i < vector_linhas.size(); i++)
+	for (unsigned int i = 0; i < vector_linhas.size(); i++)
 	{
 		if (proc_paragem(vector_linhas.at(i).getParagens(), paragem) != -1)
 			return true;
@@ -535,7 +535,7 @@ int procurar_paragem()
 		cout << "Paragem: ";
 		getline(cin, paragem);
 		cout << "Linha/s: ";
-		for (int i = 0; i < semprarrolar.getLinhas().size(); i++)
+		for (unsigned int i = 0; i < semprarrolar.getLinhas().size(); i++)
 		{
 			if (proc_paragem(semprarrolar.getLinhas().at(i).getParagens(), paragem) != -1)
 			{

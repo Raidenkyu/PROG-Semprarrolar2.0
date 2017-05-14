@@ -32,7 +32,7 @@ void visualizar_bus(bus b1)
 }
 
 //Calcula o número de autocarros necessários por linha
-int numeroBus(class_linha linha)
+unsigned int numeroBus(class_linha linha)
 {
 	int tempo = 0;
 	for (unsigned int i = 0; i < linha.getTempos().size(); i++)
@@ -131,12 +131,16 @@ void lista_periodos(bus b1)
 int periodo_disponivel()
 {
 	while (true) {
-
 		clearScreen();
 		int ID;
 		int nBus;
 		bool exist1 = false, exist2 = false;
 		cout << "Com esta opção pode consultar os périodos de tempo, em que determinado autocarro não está ser utilizado" << endl;
+		cout << endl;
+		for (unsigned int i = 0; i < semprarrolar.getLinhas().size(); i++)
+		{
+			visualizar_linha(semprarrolar.getLinhas().at(i));
+		}
 		cout << "Indique o ID da linha em que se encontra o autocarro que pretende consultar" << endl;
 		cout << "Para sair digite 0 no lugar do ID" << endl;
 		while (true)
