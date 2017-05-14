@@ -620,3 +620,137 @@ int linhas_menu() //Mini-interface que permite ao utilizador escolher a função q
 		}
 	} while (true);
 }
+
+void trajeto_linha(string p1, string p2, trajeto &t1)
+{
+    bool found = false; //Indica se aa primeira paragem foi encontrada no vetor
+	unsigned int tempo = 0;
+	for (unsigned int i = 0; i < semprarrolar.getLinhas().size(); i++)
+	{
+		if (proc_paragem(semprarrolar.getLinhas().at(i).getParagens(), p1) != -1 && proc_paragem(semprarrolar.getLinhas().at(i).getParagens(), p2) != -1 && proc_paragem(semprarrolar.getLinhas().at(i).getParagens(), p1) < proc_paragem(semprarrolar.getLinhas().at(i).getParagens(), p2))
+			//Se a viagem for no sentido direto
+		{
+			for (unsigned int j = 0; j < semprarrolar.getLinhas().at(i).getParagens().size(); j++)
+			{
+				if (toUpper(semprarrolar.getLinhas().at(i).getParagens().at(j)) == toUpper(p1))
+					found = true;
+				if (toUpper(semprarrolar.getLinhas().at(i).getParagens().at(j)) == toUpper(p2))
+				{
+					t1.paragens.push_back(semprarrolar.getLinhas().at(i).getParagens().at(j));
+					break;
+				}
+				if (found)
+				{
+					t1.paragens.push_back(semprarrolar.getLinhas().at(i).getParagens().at(j));
+					tempo += semprarrolar.getLinhas().at(i).getTempos().at(j);
+				}
+
+			}
+		}
+		else if (proc_paragem(semprarrolar.getLinhas().at(i).getParagens(), p1) != -1 && proc_paragem(semprarrolar.getLinhas().at(i).getParagens(), p2) != -1 && proc_paragem(semprarrolar.getLinhas().at(i).getParagens(), p1) > proc_paragem(semprarrolar.getLinhas().at(i).getParagens(), p2))
+			//Se a viagem for no sentido inverso
+		{
+			for (int j = semprarrolar.getLinhas().at(i).getParagens().size() - 1; j >= 0; j--)
+			{
+				if (toUpper(semprarrolar.getLinhas().at(i).getParagens().at(j)) == toUpper(p1))
+					found = true;
+				if (toUpper(semprarrolar.getLinhas().at(i).getParagens().at(j)) == toUpper(p2))
+				{
+					t1.paragens.push_back(semprarrolar.getLinhas().at(i).getParagens().at(j));
+					break;
+				}
+				if (found)
+				{
+					t1.paragens.push_back(semprarrolar.getLinhas().at(i).getParagens().at(j));
+					tempo += semprarrolar.getLinhas().at(i).getTempos().at(j - 1);
+				}
+
+			}
+		}
+	}
+	t1.tempo += tempo;
+}
+
+//Função responsável por imprimir ium trajecto
+void visualizar_trajeto(trajeto t1)
+{
+	for (unsigned int i = 0; i < t1.paragens.size(); i++)
+	{
+		cout << t1.paragens.at(i);
+		if (i != t1.paragens.size() - 1 && t1.paragens.at(i) != t1.paragens.at(i + 1))
+			cout << "->";
+		else if (i != t1.paragens.size() - 1 && t1.paragens.at(i) == t1.paragens.at(i + 1))
+			cout << endl << "Mudança de linha: " << t1.linha1 << " -> " << t1.linha2 << endl;
+		else cout << endl;
+	}
+	cout << endl << "Duração da viagem: " << t1.tempo << " minutos" << endl;
+}
+
+int calcula_trajeto() //Indica para duas paragens as paragens intermédias e o tempo total de viagem
+{
+	clearScreen();
+	string p1, p2, pi;
+	vector<trajeto> trajetos;
+	trajeto t1;
+	t1.tempo = 0;
+	int i1, i2; //O indices das linhas em que se encontram as paragens, no vetor das linhas
+	bool poss = false; //variável que assume valor true, sempre que for possível calcular o trajecto
+	cout << "Indique duas paragens e para se poder calcular o seu trajeto e a duração da sua viagem" << endl;
+	cout << "As paragens devem estar ou na mesma linha, ou em linhas com paragens identicas" << endl;
+	cout << "Se houver mais que um trajeto, serão lhe apresentados por ordem crescente de tempo" << endl;
+	cin.clear();
+	cin.ignore(INT_MAX, '\n');
+	cout << "Paragem de partida: ";
+	getline(cin, p1);
+	cout << "Paragem de chegada: ";
+	getline(cin, p2);
+	cout << endl;
+	for (unsigned int i = 0; i < semprarrolar.getLinhas().size(); i++)
+	{
+		if (proc_paragem(semprarrolar.getLinhas().at(i).getParagens(), p1) != -1)
+			i1 = i;
+		if (proc_paragem(semprarrolar.getLinhas().at(i).getParagens(), p2) != -1)
+			i2 = i;
+
+	}
+	if (i1 == i2)
+	{
+		trajeto_linha(p1, p2, t1);
+		t1.linha1 = semprarrolar.getLinhas().at(i1).getID();
+		t1.linha2 = semprarrolar.getLinhas().at(i2).getID();
+		visualizar_trajeto(t1);
+		poss = true;
+	}
+	else {
+		for (unsigned int i = 0; i < semprarrolar.getLinhas().at(i1).getParagens().size(); i++)
+		{
+			for (unsigned int j = 0; j < semprarrolar.getLinhas().at(i2).getParagens().size(); j++)
+			{
+				if (semprarrolar.getLinhas().at(i1).getParagens().at(i) == semprarrolar.getLinhas().at(i2).getParagens().at(j))
+				{
+					trajeto_linha(p1, semprarrolar.getLinhas().at(i1).getParagens().at(i), t1);
+					trajeto_linha(semprarrolar.getLinhas().at(i2).getParagens().at(j), p2, t1);
+					t1.linha1 = semprarrolar.getLinhas().at(i1).getID();
+					t1.linha2 = semprarrolar.getLinhas().at(i2).getID();
+					trajetos.push_back(t1);
+					poss = true;
+				}
+			}
+		}
+		if(poss)
+			select_sort(trajetos);
+		for (unsigned int i = 0; i < trajetos.size(); i++)
+		{
+			visualizar_trajeto(trajetos.at(i));
+			cout << endl;
+		}
+	}
+	if (!poss)
+	{
+		cout << "Não foi possível encontrar ligação entre as paragens indicadas" << endl;
+	}
+	cout << "Pressione Enter para regressar" << endl;
+	cin.get();
+	clearScreen();
+	return 0;
+}
