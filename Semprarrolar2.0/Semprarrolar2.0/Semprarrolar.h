@@ -129,6 +129,17 @@ public:
 	void distribuiServico(); // funcao que implementa a afectacao de servico(incompleta)
 };
 
+
+//Classe auxialiar para a função que calcula um trajeto
+//Todas as variaveis são públicas pois como será utilizadas para uma função, não haverá problema;
+class trajeto {
+public:
+	vector<string> paragens;
+	unsigned int tempo;
+	unsigned int linha1;
+	unsigned int linha2;
+};
+
 extern Empresa semprarrolar;
 extern int hora_inicial;
 extern int hora_final;
@@ -148,3 +159,5 @@ void atribui_autocarro(class_linha &linha);
 void guardar_linhas(string lines_filename);
 void guardar_condutores(string drivers_filename);
 int periodo_disponivel();
+void select_sort(vector<trajeto> &v);
+int calcula_trajeto();

@@ -54,7 +54,7 @@ int menu_principal()
 			procurar_paragem();
 			break;
 		case 6:
-			//calcula_trajeto();
+			calcula_trajeto();
 			break;
 		case 0:
 			clearScreen();

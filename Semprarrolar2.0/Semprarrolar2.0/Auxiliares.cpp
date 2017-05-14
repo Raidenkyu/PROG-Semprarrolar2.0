@@ -2,7 +2,7 @@
 #include "Semprarrolar.h"
 
 using namespace std;
-//Ordenação de interios (vector)
+//Ordenação de inteiros (vector)
 void select_sort(vector<int> &v)   //Implementação de um overload de select sort para inteiros
 {
 	int tmp;
@@ -11,6 +11,24 @@ void select_sort(vector<int> &v)   //Implementação de um overload de select sort
 		for (unsigned int j = i; j < v.size(); j++)
 		{
 			if (v.at(i) > v.at(j))
+			{
+				tmp = v.at(i);
+				v.at(i) = v.at(j);
+				v.at(j) = tmp;
+			}
+		}
+	}
+}
+
+//Ordenação de trajectos (vector)
+void select_sort(vector<trajeto> &v)   //Implementação de um overload de select sort para trajetos
+{
+	trajeto tmp;
+	for (unsigned int i = 0; i < v.size() - 1; i++)
+	{
+		for (unsigned int j = i; j < v.size(); j++)
+		{
+			if (v.at(i).tempo > v.at(j).tempo)
 			{
 				tmp = v.at(i);
 				v.at(i) = v.at(j);
