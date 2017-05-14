@@ -130,7 +130,7 @@ int menu_trabalho()
 		cout << "+--------------------------------------+" << endl;
 		cout << "| 1. Ver e Atribuir Trabalho           |" << endl; 
 		cout << "| 2. Listar condutores disponíveis     |" << endl; 
-		cout << "| 3. Condutores por linha              |" << endl;
+		cout << "| 3. Listar autocarros disponíveis     |" << endl;
 		cout << "| 0. Regressar ao Menu Principal       |" << endl;
 		cout << "+--------------------------------------+" << endl;
 		cout << endl << "Opção: ";
@@ -144,7 +144,7 @@ int menu_trabalho()
 			condutores_disponiveis();
 			break;
 		case 3:
-			//condutores_linha();
+			periodo_disponivel();
 			break;
 		case 0:
 			clearScreen();
