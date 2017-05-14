@@ -1,24 +1,14 @@
-<<<<<<< HEAD
-<<<<<<< HEAD
 ﻿  Horario.cpp
 c:\users\figor\onedrive\git\projeto\semprarrolar2.0\semprarrolar2.0\horario.cpp(28): warning C4018: '<': signed/unsigned mismatch
-c:\users\figor\onedrive\git\projeto\semprarrolar2.0\semprarrolar2.0\horario.cpp(60): warning C4018: '<': signed/unsigned mismatch
-c:\users\figor\onedrive\git\projeto\semprarrolar2.0\semprarrolar2.0\horario.cpp(101): warning C4018: '<=': signed/unsigned mismatch
-c:\users\figor\onedrive\git\projeto\semprarrolar2.0\semprarrolar2.0\horario.cpp(140): warning C4018: '<=': signed/unsigned mismatch
+c:\users\figor\onedrive\git\projeto\semprarrolar2.0\semprarrolar2.0\horario.cpp(85): warning C4018: '<=': signed/unsigned mismatch
+c:\users\figor\onedrive\git\projeto\semprarrolar2.0\semprarrolar2.0\horario.cpp(124): warning C4018: '<=': signed/unsigned mismatch
+c:\users\figor\onedrive\git\projeto\semprarrolar2.0\semprarrolar2.0\horario.cpp(144): warning C4018: '<': signed/unsigned mismatch
+c:\users\figor\onedrive\git\projeto\semprarrolar2.0\semprarrolar2.0\horario.cpp(149): warning C4018: '<': signed/unsigned mismatch
+c:\users\figor\onedrive\git\projeto\semprarrolar2.0\semprarrolar2.0\horario.cpp(177): warning C4018: '<': signed/unsigned mismatch
+c:\users\figor\onedrive\git\projeto\semprarrolar2.0\semprarrolar2.0\horario.cpp(167): warning C4101: 'hora': unreferenced local variable
+c:\users\figor\onedrive\git\projeto\semprarrolar2.0\semprarrolar2.0\horario.cpp(164): warning C4101: 'primeirotempo': unreferenced local variable
+c:\users\figor\onedrive\git\projeto\semprarrolar2.0\semprarrolar2.0\horario.cpp(166): warning C4101: 'freq': unreferenced local variable
+c:\users\figor\onedrive\git\projeto\semprarrolar2.0\semprarrolar2.0\horario.cpp(167): warning C4101: 'minuto': unreferenced local variable
+c:\users\figor\onedrive\git\projeto\semprarrolar2.0\semprarrolar2.0\horario.cpp(164): warning C4101: 'segundotempo': unreferenced local variable
   Semprarrolar2.0.vcxproj -> C:\Users\figor\OneDrive\git\projeto\Semprarrolar2.0\Debug\Semprarrolar2.0.exe
   Semprarrolar2.0.vcxproj -> C:\Users\figor\OneDrive\git\projeto\Semprarrolar2.0\Debug\Semprarrolar2.0.pdb (Full PDB)
-=======
-﻿  Semprarrolar2.0.vcxproj -> C:\Users\joao-\Documents\1º Ano 2º Semestre\PROG\Projectos\Semprarrolar2.0\Semprarrolar2.0\Semprarrolar2.0\Debug\Semprarrolar2.0.exe
-=======
-﻿  Shift.cpp
-c:\users\joao-\documents\1º ano 2º semestre\prog\projectos\semprarrolar2.0\semprarrolar2.0\semprarrolar2.0\semprarrolar2.0\shift.cpp(77): warning C4101: 'hf': unreferenced local variable
-c:\users\joao-\documents\1º ano 2º semestre\prog\projectos\semprarrolar2.0\semprarrolar2.0\semprarrolar2.0\semprarrolar2.0\shift.cpp(77): warning C4101: 'hi': unreferenced local variable
-c:\users\joao-\documents\1º ano 2º semestre\prog\projectos\semprarrolar2.0\semprarrolar2.0\semprarrolar2.0\semprarrolar2.0\shift.cpp(77): warning C4101: 'mf': unreferenced local variable
-c:\users\joao-\documents\1º ano 2º semestre\prog\projectos\semprarrolar2.0\semprarrolar2.0\semprarrolar2.0\semprarrolar2.0\shift.cpp(77): warning C4101: 'mi': unreferenced local variable
-c:\users\joao-\documents\1º ano 2º semestre\prog\projectos\semprarrolar2.0\semprarrolar2.0\semprarrolar2.0\semprarrolar2.0\shift.cpp(103): warning C4018: '>=': signed/unsigned mismatch
-  Bus.cpp
-  Generating Code...
-  Semprarrolar2.0.vcxproj -> C:\Users\joao-\Documents\1º Ano 2º Semestre\PROG\Projectos\Semprarrolar2.0\Semprarrolar2.0\Semprarrolar2.0\Debug\Semprarrolar2.0.exe
->>>>>>> master
-  Semprarrolar2.0.vcxproj -> C:\Users\joao-\Documents\1º Ano 2º Semestre\PROG\Projectos\Semprarrolar2.0\Semprarrolar2.0\Semprarrolar2.0\Debug\Semprarrolar2.0.pdb (Full PDB)
->>>>>>> master

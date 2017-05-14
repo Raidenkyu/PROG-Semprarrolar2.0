@@ -40,6 +40,123 @@ int get_tempo(vector<unsigned int> tempos, int indice)
 	}
 	return total;
 }
+void imprimir_horario_paragem(class_linha linhas,int indice)
+{
+	unsigned int primeirotempo, segundotempo;
+	unsigned int tempo1 = 420, tempo2 = 420;
+	unsigned int freq;
+	int hora, minuto;
+	primeirotempo = get_tempo(linhas.getTempos(), indice);
+	segundotempo = primeirotempo + get_tempo_total(linhas.getTempos());
+
+	cout << "Linha " << linhas.getID() << endl << "Paragem: " << linhas.getParagens().at(indice) << endl;
+
+	cout << "Horário de ida: " << endl;
+	tempo1 += primeirotempo;
+	tempo2 += segundotempo;
+	freq = linhas.getFreq();
+
+	while (tempo1 <= 1140)
+	{
+		if (tempo1 < tempo2)
+		{
+			minuto = tempo1 % 60;
+			hora = tempo1 / 60;
+			imprimirhora(hora, minuto);
+			tempo1 += freq;
+		}
+		else if (tempo2 < tempo1)
+		{
+			minuto = tempo2 % 60;
+			hora = tempo2 / 60;
+			imprimirhora(hora, minuto);
+			tempo2 += freq;
+		}
+		else
+		{
+			minuto = tempo1 % 60;
+			hora = tempo1 / 60;
+			imprimirhora(hora, minuto);
+			cout << "x2 ";
+			tempo1 += freq;
+			tempo2 += freq;
+		}
+	}
+	for (int j = 1; j <= segundotempo / freq; j++)
+	{
+		minuto = tempo2 % 60;
+		hora = tempo2 / 60;
+		imprimirhora(hora, minuto);
+		tempo2 += freq;
+	}
+	cout << endl << "Horário de volta: " << endl;
+	primeirotempo = get_tempo_total(linhas.getTempos()) - primeirotempo;
+	segundotempo = get_tempo_total(linhas.getTempos()) + primeirotempo;
+	tempo1 = 420 + primeirotempo;
+	tempo2 = 420 + segundotempo;
+	freq = linhas.getFreq();
+	while (tempo1 <= 1140)
+	{
+		if (tempo1 < tempo2)
+		{
+			minuto = tempo1 % 60;
+			hora = tempo1 / 60;
+			imprimirhora(hora, minuto);
+			tempo1 += freq;
+		}
+		else if (tempo2 < tempo1)
+		{
+			minuto = tempo2 % 60;
+			hora = tempo2 / 60;
+			imprimirhora(hora, minuto);
+			tempo2 += freq;
+		}
+		else
+		{
+			minuto = tempo1 % 60;
+			hora = tempo1 / 60;
+			imprimirhora(hora, minuto);
+			cout << "x2 ";
+			tempo1 += freq;
+			tempo2 += freq;
+		}
+	}
+	for (int j = 1; j <= segundotempo / freq; j++)
+	{
+		minuto = tempo2 % 60;
+		hora = tempo2 / 60;
+		imprimirhora(hora, minuto);
+		tempo2 += freq;
+	}
+}
+void horario_linha()
+{
+	clearScreen();
+
+	unsigned int tempo1 = 420, tempo2 = 420;
+	int linhaid;
+
+	vector<class_linha> linhas = semprarrolar.getLinhas();
+
+	cout << "Qual a linha que quer ver o horário? ";
+	cin >> linhaid;
+
+	for (int i = 0; i < linhas.size(); i++)
+	{
+		if (linhaid==linhas.at(i).getID())
+		{
+			int tempototal = get_tempo_total(linhas.at(i).getTempos());
+			for (int j = 0; j < linhas.at(i).getParagens().size(); j++)
+			{
+				imprimir_horario_paragem(linhas.at(i), j);
+			}
+
+		}
+	}
+	cin.get();
+	cin.get();
+}
+
 void horario_paragem()
 {
 	clearScreen();
@@ -62,88 +179,7 @@ void horario_paragem()
 		int indice = proc_paragem(linhas.at(i).getParagens(), paragemlida);
 		if (indice != -1)
 		{
-			primeirotempo = get_tempo(linhas.at(i).getTempos(), indice);
-			segundotempo = primeirotempo + get_tempo_total(linhas.at(i).getTempos());
-
-			cout << "Linha " << linhas.at(i).getID() << endl << "Paragem: " << linhas.at(i).getParagens().at(indice) << endl;
-			
-			cout << "Horário de ida: " << endl;
-			tempo1 += primeirotempo;
-			tempo2 += segundotempo;
-			freq = linhas.at(i).getFreq();
-
-			while (tempo1 <= 1140)
-			{
-				if (tempo1 < tempo2)
-				{
-					minuto = tempo1 % 60;
-					hora = tempo1 / 60;
-					imprimirhora(hora, minuto);
-					tempo1 += freq;
-				}
-				else if (tempo2 < tempo1)
-				{
-					minuto = tempo2 % 60;
-					hora = tempo2 / 60;
-					imprimirhora(hora, minuto);
-					tempo2 += freq;
-				}
-				else
-				{
-					minuto = tempo1 % 60;
-					hora = tempo1 / 60;
-					imprimirhora(hora, minuto);
-					cout << "x2 ";
-					tempo1 += freq;
-					tempo2 += freq;
-				}
-			}
-			for (int j = 1; j <= segundotempo / freq; j++)
-			{
-				minuto = tempo2 % 60;
-				hora = tempo2 / 60;
-				imprimirhora(hora, minuto);
-				tempo2 += freq;
-			}
-			cout << endl << "Horário de volta: " << endl;
-			primeirotempo = get_tempo_total(linhas.at(i).getTempos()) - primeirotempo;
-			segundotempo = get_tempo_total(linhas.at(i).getTempos()) + primeirotempo;
-			tempo1 = 420+ primeirotempo;
-			tempo2 = 420+ segundotempo;
-			freq = linhas.at(i).getFreq();
-			while (tempo1 <= 1140)
-			{
-				if (tempo1 < tempo2)
-				{
-					minuto = tempo1 % 60;
-					hora = tempo1 / 60;
-					imprimirhora(hora, minuto);
-					tempo1 += freq;
-				}
-				else if (tempo2 < tempo1)
-				{
-					minuto = tempo2 % 60;
-					hora = tempo2 / 60;
-					imprimirhora(hora, minuto);
-					tempo2 += freq;
-				}
-				else
-				{
-					minuto = tempo1 % 60;
-					hora = tempo1 / 60;
-					imprimirhora(hora, minuto);
-					cout << "x2 ";
-					tempo1 += freq;
-					tempo2 += freq;
-				}
-			}
-			for (int j = 1; j <= segundotempo / freq; j++)
-			{
-				minuto = tempo2 % 60;
-				hora = tempo2 / 60;
-				imprimirhora(hora, minuto);
-				tempo2 += freq;
-			}
+			imprimir_horario_paragem(linhas.at(i), indice);
 		}
 	}
 
@@ -162,6 +198,7 @@ int horarios_menu()
 		cout << "| Selecione uma das seguintes opções :  |" << endl;
 		cout << "+-------------------------------------- +" << endl;
 		cout << "| 1. Horario de uma paragem             |" << endl;
+		cout << "| 2. Horario de uma linha               |" << endl;
 		cout << "| 0. Sair                               |" << endl;
 		cout << "+-------------------------------------- +" << endl << endl;
 		cout << "Opção: ";
@@ -170,6 +207,9 @@ int horarios_menu()
 		{
 		case 1:
 			horario_paragem();
+			break;
+		case 2:
+			horario_linha();
 			break;
 		case 0:
 			clearScreen();
