@@ -93,33 +93,39 @@ void lista_periodos(bus b1)
 {
 	int hora = hora_inicial;
 	int minuto;
-	cout << "Periodos sem trabalho atribuido:" << endl;
+	cout << "Periodos sem trabalho atribuido:" << endl << endl;
 	if (b1.getSchedule().size() == 0)
-		cout << "Este autocarro já está ocupado com trabalho" << endl;
-	if (hora_inicial*60 != b1.getSchedule().at(1).getInicio())
+		cout << "Este autocarro encontra-se desocupado o dia todo" << endl;
+	else
 	{
-		hora = b1.getSchedule().at(1).getInicio() / 60;
-		minuto = b1.getSchedule().at(1).getInicio() % 60;
-		cout << setw(2) << setfill('0') << hora_inicial << ":" << 0 << " -> " << hora << ":" << minuto << endl;
-	}
-	for (unsigned int i = 0; i < b1.getSchedule().size() - 1; i++)
-	{
-		if (b1.getSchedule().at(i).getFim() != b1.getSchedule().at(i + 1).getInicio())
+		if (hora_inicial * 60 != b1.getSchedule().at(1).getInicio())
 		{
-			hora = b1.getSchedule().at(i).getFim() / 60;
-			minuto = b1.getSchedule().at(i).getFim() % 60;
-			cout << setw(2) << setfill('0') << hora << ":" << minuto << " -> ";
-			hora = b1.getSchedule().at(i).getInicio() / 60;
-			minuto = b1.getSchedule().at(i).getInicio() % 60;
-			cout << setw(2) << setfill('0') << hora << ":" << minuto << endl;
+			hora = b1.getSchedule().at(1).getInicio() / 60;
+			minuto = b1.getSchedule().at(1).getInicio() % 60;
+			cout << setw(2) << setfill('0') << hora_inicial << ":" << 0 << " -> " << hora << ":" << minuto << endl;
+		}
+		for (unsigned int i = 0; i < b1.getSchedule().size() - 1; i++)
+		{
+			if (b1.getSchedule().at(i).getFim() != b1.getSchedule().at(i + 1).getInicio())
+			{
+				hora = b1.getSchedule().at(i).getFim() / 60;
+				minuto = b1.getSchedule().at(i).getFim() % 60;
+				cout << setw(2) << setfill('0') << hora << ":" << minuto << " -> ";
+				hora = b1.getSchedule().at(i).getInicio() / 60;
+				minuto = b1.getSchedule().at(i).getInicio() % 60;
+				cout << setw(2) << setfill('0') << hora << ":" << minuto << endl;
+			}
+		}
+		if (b1.getSchedule().at(b1.getSchedule().size() - 1).getFim() != hora_final * 60)
+		{
+			hora = b1.getSchedule().at(b1.getSchedule().size() - 1).getFim() / 60;
+			minuto = b1.getSchedule().at(b1.getSchedule().size() - 1).getFim() % 60;
+			cout << setw(2) << setfill('0') << hora << ":" << minuto << " -> " << hora_final << ":" << 0;
 		}
 	}
-	if (b1.getSchedule().at(b1.getSchedule().size() - 1).getFim() != hora_final*60)
-	{
-		hora = b1.getSchedule().at(b1.getSchedule().size() - 1).getFim() / 60;
-		minuto = b1.getSchedule().at(b1.getSchedule().size() - 1).getFim() % 60;
-		cout << setw(2) << setfill('0') << hora << ":" << minuto << " -> " << hora_final << ":" << 0;
-	}
+	cout << endl << endl << "Pressione qualque tecla para continuar" << endl;
+	cin.get();
+	cin.get();
 }
 
 int periodo_disponivel()
@@ -135,7 +141,7 @@ int periodo_disponivel()
 		cout << "Para sair digite 0 no lugar do ID" << endl;
 		while (true)
 		{
-			cout << "Indique o ID da linha que pretende criar: ";
+			cout << "Indique o ID da linha onde se encontra o autocarro que pretende consultar: ";
 			cin >> ID;
 			if (cin.good())
 				break;
@@ -147,7 +153,10 @@ int periodo_disponivel()
 			}
 		}
 		if (ID == 0)
+		{
+			clearScreen();
 			return 0;
+		}
 		for (unsigned int i = 0; i < semprarrolar.getLinhas().size(); i++)
 		{
 			if (semprarrolar.getLinhas().at(i).getID() == ID)
@@ -157,7 +166,7 @@ int periodo_disponivel()
 				for (unsigned int j = 0; j < semprarrolar.getLinhas().at(i).getAutocarros().size(); j++)
 				{
 					cout << semprarrolar.getLinhas().at(i).getAutocarros().at(j).getBus();
-					if (i != semprarrolar.getLinhas().at(i).getAutocarros().size() - 1)
+					if (j != semprarrolar.getLinhas().at(i).getAutocarros().size() - 1)
 						cout << ", ";
 					else cout << endl << endl;
 				}
