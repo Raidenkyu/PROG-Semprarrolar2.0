@@ -98,7 +98,7 @@ int menu_principal()
 			cin.get();
 			clearScreen();
 		}
-
+		clearScreen();
 	} while (true);
 }
 

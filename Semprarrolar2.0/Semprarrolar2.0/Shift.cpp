@@ -76,7 +76,6 @@ void visualizar_trabalho(class_condutor c1)
 
 
 //Função que permite atribuir trabalho a um condutor
-//Incompleta, deixar para o fim
 void trabalho_condutor()
 {
 	clearScreen();
@@ -192,7 +191,7 @@ void trabalho_condutor()
 		if (hora1 < hora_inicial || hora2 > hora_final)
 		{
 			pode = false;
-			cout << "O horario que inseriu não esta entre as 7 e as 19";
+			cout << "O horario que inseriu não esta entre as 7 e as 19" << endl;
 		}
 		total = 0;
 		for (unsigned int i = 0; i < condutor.getShifts().size(); i++)
@@ -202,14 +201,14 @@ void trabalho_condutor()
 			else
 			{
 				pode = false;
-				cout << "O horario que inseriu esta entre outro horario e o seu tempo de descanso.";
+				cout << "O horario que inseriu esta entre outro horario e o seu tempo de descanso." << endl;
 			}
 			total = total + condutor.getShifts().at(i).getFim() - condutor.getShifts().at(i).getInicio();
 		}
 		if (total * 7 >= condutor.getMax())
 		{
 			pode = false;
-			cout << "O condutor já esta a trabalhar o numero maximo de horas";
+			cout << "O condutor já esta a trabalhar o numero maximo de horas" << endl;
 		}
 		for (unsigned int i = 0; i < autocarrinho.getSchedule().size(); i++)
 		{
@@ -218,13 +217,17 @@ void trabalho_condutor()
 			else
 			{
 				pode = false;
-				cout << "O horario inserido esta sobreposto a um outro horario de autocarro";
+				cout << "O horario inserido esta sobreposto a um outro horario de autocarro" << endl;
 			}
 		}
 		if (pode)
 		{
 			total += hora2 - hora1;
-			if (total *7>= condutor.getMax())pode = false;
+			if (total * 7 >= condutor.getMax())
+			{
+				pode = false;
+				cout << "O horario que inseriu excede o limite semanal de trabalho do condutor" << endl;
+			}
 			else
 			{
 				if (hora2 - hora1 <= condutor.getTurno())
@@ -253,6 +256,7 @@ void trabalho_condutor()
 				else
 				{
 					pode = false;
+					cout << "O horario excede o tamanha do turno do condutor" << endl;
 				}
 			}
 		}

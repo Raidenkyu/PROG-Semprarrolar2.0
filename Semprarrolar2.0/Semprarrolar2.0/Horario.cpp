@@ -122,8 +122,18 @@ void horario_linha()
 	vector<class_linha> linhas = semprarrolar.getLinhas();
 	while (existe == false)
 	{
-		cout << "Qual a linha que quer ver o horário? ";
-		cin >> linhaid;
+		while (true) {
+			cout << "Indique a linha que quer ver o horário: ";
+			cin >> linhaid;
+			if (cin.good())
+				break;
+			else
+			{
+				cin.clear();
+				cin.ignore(INT_MAX, '\n');
+				cout << "Erro. Introduziu um valor inválido. Só pode introduzir números inteiros" << endl;
+			}
+		}
 
 		for (unsigned int i = 0; i < linhas.size(); i++)
 		{
@@ -140,7 +150,7 @@ void horario_linha()
 		}
 		if (existe == false)
 		{
-			cout << "A linha que inseriu não existe. Porfavor volte a inserir" << endl;
+			cout << "A linha que inseriu não existe. Por favor volte a inserir" << endl;
 		}
 	}
 	cin.get();
@@ -153,10 +163,10 @@ void horario_paragem()
 	string paragemlida;
 	bool existe = false;
 	vector<class_linha> linhas =  semprarrolar.getLinhas();
-	while (existe == false)
+	while (!existe)
 	{
 		cin.ignore(INT_MAX, '\n');
-		cout << "Qual a paragem que quer ver o horário? ";
+		cout << "Indique a paragem que quer ver o horário: ";
 		getline(cin, paragemlida);
 		for (unsigned int i = 0; i < linhas.size(); i++)
 		{
@@ -167,13 +177,12 @@ void horario_paragem()
 				existe = true;
 			}
 		}
-		if (existe== false)
+		if (!existe)
 		{
-			cout << "A paragem que inseriu não existe. Porfavor volte a inserir" << endl;
+			cout << "A paragem que inseriu não existe. Por favor volte a inserir" << endl;
 		}
 	}
 	cin.get();
-
 }
 
 int horarios_menu()
