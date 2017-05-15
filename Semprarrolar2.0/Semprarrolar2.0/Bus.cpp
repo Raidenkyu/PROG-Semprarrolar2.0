@@ -25,6 +25,12 @@ vector <shift> bus::getSchedule() {
 unsigned int bus::getBus() const {
 	return this->nBus;
 }
+
+//Funções set
+void bus::setSchedule(vector<shift> schedule)
+{
+	this->schedule = schedule;
+}
 //Mostra a informação de um autocarro
 void visualizar_bus(bus b1)
 {

@@ -29,7 +29,7 @@ void shift::setLinhaID(unsigned int idLinha) {
 	this->idLinha = idLinha;
 }
 
-void shift::setCondutorID(unsigned int idLinha) {
+void shift::setCondutorID(unsigned int idCondutor) {
 	this->idCondutor = idCondutor;
 }
 
@@ -51,21 +51,27 @@ void visualizar_trabalho(class_condutor c1)
 {
 	clearScreen();
 	int hi, hf, mi, mf;
-	cout << "+-------------+----------------+-----------------+----------------+-------------+" << endl;
-	cout << "| ID da Linha | ID do Condutor | Nº do autocarro | Hora de inicio | Hora do fim |" << endl;
-	cout << "+-------------+----------------+-----------------+----------------+-------------+" << endl;
-	for (unsigned int i = 0; i < c1.getShifts().size(); i++)
+	if (c1.getShifts().size() != 0)
 	{
-		hi = c1.getShifts().at(i).getInicio() / 60;
-		mi = c1.getShifts().at(i).getInicio() % 60;
-		hf = c1.getShifts().at(i).getFim() / 60;
-		mf = c1.getShifts().at(i).getFim() % 60;
-		cout << "| " << setw(11) << c1.getShifts().at(i).getLinha() << " | "
-			<< setw(14) << c1.getShifts().at(i).getCondutor() << " | "
-			<< setw(15) << c1.getShifts().at(i).getBus() << " | "
-			<< setw(7) << hi << ":" << setw(6) << mi << " | "
-			<< setw(5) << hf << ":" << setw(5) << mf << " |" << endl;
+		cout << "+-------------+----------------+-----------------+----------------+-------------+" << endl;
+		cout << "| ID da Linha | ID do Condutor | Nº do autocarro | Hora de inicio | Hora do fim |" << endl;
+		cout << "+-------------+----------------+-----------------+----------------+-------------+" << endl;
+		for (unsigned int i = 0; i < c1.getShifts().size(); i++)
+		{
+			hi = c1.getShifts().at(i).getInicio() / 60;
+			mi = c1.getShifts().at(i).getInicio() % 60;
+			hf = c1.getShifts().at(i).getFim() / 60;
+			mf = c1.getShifts().at(i).getFim() % 60;
+			cout << "| " << setw(11) << c1.getShifts().at(i).getLinha() << " | "
+				<< setw(14) << c1.getShifts().at(i).getCondutor() << " | "
+				<< setw(15) << c1.getShifts().at(i).getBus() << " | "
+				<< setw(7) << hi << ":" << setw(6) << left << mi << " | "
+				<< setw(5) << right << hf << ":" << setw(5) << left << mf << " |" << endl;
+		}
+		cout << "+-------------+----------------+-----------------+----------------+-------------+" << endl;
 	}
+	else cout << "Este condutor ainda não tem nenhum trabalho atribuído" << endl;
+	cout << endl;
 }
 
 
@@ -74,14 +80,19 @@ void visualizar_trabalho(class_condutor c1)
 void trabalho_condutor()
 {
 	clearScreen();
-	int idCondutor;
-	int idlinha;
-	int idautocarro;
-	int hora1, hora2;
-	int total;
+	unsigned int idCondutor;
+	unsigned int idlinha;
+	unsigned int idautocarro;
+	unsigned int hora1, hora2;
+	unsigned int total;
+	unsigned int ilinha, icondutor, ibus; //indice da linha, do condutor e do autocarro nos respectivos vetores
 	bool exist = false;
 	class_condutor condutor;
 	cout << "Indique um condutor para poder vizualizar o seu trabalho e modificar" << endl;
+	for (unsigned int i = 0; i < semprarrolar.getCondutores().size(); i++)
+	{
+		visualizar_condutor(semprarrolar.getCondutores().at(i));
+	}
 	cout << "ID do Condutor: ";
 	cin >> idCondutor;
 	cout << "Trabalho do condutor indicado: " << endl;
@@ -92,34 +103,45 @@ void trabalho_condutor()
 			exist = true;
 			visualizar_trabalho(semprarrolar.getCondutores().at(i));
 			condutor = semprarrolar.getCondutores().at(i);
+			icondutor = i;
 		}
 	}
-	cout << "Qual a linha que pretende atribuir trabalho?";
+	cout << "Indique a linha que pretende atribuir trabalho" << endl;
+	for (unsigned int i = 0; i < semprarrolar.getLinhas().size(); i++)
+	{
+		visualizar_linha(semprarrolar.getLinhas().at(i));
+	}
+	cout << "ID da Linha: ";
 	cin >> idlinha;
 	int existe = proc_linha(semprarrolar.getLinhas(), idlinha);
 	if (existe != -1)
 	{
-		for (int i = 0; i < semprarrolar.getLinhas().at(existe).getAutocarros().size(); i++)
+		for (unsigned int i = 0; i < semprarrolar.getLinhas().at(existe).getAutocarros().size(); i++)
 		{
 			bus autocarrinho = semprarrolar.getLinhas().at(existe).getAutocarros().at(i);
 			cout << "Autocarro " << autocarrinho.getBus() << " :" << endl;
-			for (int j = 0; j < autocarrinho.getSchedule().size(); j++)
+			for (unsigned int j = 0; j < autocarrinho.getSchedule().size(); j++)
 			{
 				cout << "Horario " << j + 1 << " : " << autocarrinho.getSchedule().at(j).getInicio() << "->" << autocarrinho.getSchedule().at(j).getFim() << endl;
 			}
 		}
-		cout << "Qual o autocarro que prentede criar um novo turno?";
+		cout << "Indique o autocarro onde pretende criar um novo turno: ";
 		cin >> idautocarro;
 		idautocarro--;
 		bus autocarrinho = semprarrolar.getLinhas().at(existe).getAutocarros().at(idautocarro);
-		cout << "De que horas a que horas prentede que o turno tenha?" << endl;
+		ilinha = existe;
+		ibus = idautocarro;
+		cout << "Indique a hora inicial e a hora final do turno" << endl;
+		cout << "Aviso: A empresa só trabalha das 7 às 19" << endl;
 		cout << "Primeira hora: ";
 		cin >> hora1;
 		cout << "Segunda hora: ";
 		cin >> hora2;
 		bool pode = true;
+		if (hora1 < hora_inicial || hora2 > hora_final)
+			pode = false;
 		total = 0;
-		for (int i = 0; i < condutor.getShifts().size(); i++)
+		for (unsigned int i = 0; i < condutor.getShifts().size(); i++)
 		{
 			if (condutor.getShifts().at(i).getInicio() < hora1-condutor.getDescanso() && condutor.getShifts().at(i).getFim() < hora1- condutor.getDescanso());
 			else if (condutor.getShifts().at(i).getInicio() > hora2+ condutor.getDescanso() && condutor.getShifts().at(i).getFim() > hora2+ condutor.getDescanso());
@@ -130,7 +152,7 @@ void trabalho_condutor()
 			total = total + condutor.getShifts().at(i).getFim() - condutor.getShifts().at(i).getInicio();
 		}
 		if (total >= condutor.getMax())pode = false;
-		for (int i = 0; i < autocarrinho.getSchedule().size(); i++)
+		for (unsigned int i = 0; i < autocarrinho.getSchedule().size(); i++)
 		{
 			if (autocarrinho.getSchedule().at(i).getInicio() < hora1 && autocarrinho.getSchedule().at(i).getFim() < hora1);
 			else if (autocarrinho.getSchedule().at(i).getInicio() > hora2 && autocarrinho.getSchedule().at(i).getFim() > hora2);
@@ -155,11 +177,18 @@ void trabalho_condutor()
 					sf.setLinhaID(idlinha);
 					vector < shift > v1= autocarrinho.getSchedule();
 					vector < shift > v2 = condutor.getShifts();
+					vector<class_linha> vector_linhas = semprarrolar.getLinhas();
+					vector<class_condutor> vector_condutores = semprarrolar.getCondutores();
+					vector<bus> vector_bus = semprarrolar.getLinhas().at(ilinha).getAutocarros();
 					v1.push_back(sf);
 					v2.push_back(sf);
 					condutor.setShifts(v2);
-					cout << "ola";
-					//FALTA ALGO AQUI E NS O QUE ÉÉÉÉÉÉÉÉÉ´!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+					vector_bus.at(ibus).setSchedule(v1);
+					vector_condutores.at(icondutor).setShifts(v2);
+					vector_linhas.at(ilinha).setAutocarros(vector_bus);
+					semprarrolar.setLinhas(vector_linhas);
+					semprarrolar.setCondutores(vector_condutores);
+					cout << endl << "Turno atribuído com sucesso" << endl;
 				}
 				else
 				{
@@ -167,7 +196,7 @@ void trabalho_condutor()
 				}
 			}
 		}
-		if(pode==false)
+		if(!pode)
 		{
 			cout << "O horario que inseriu já se encontra ocupado no horario do autocarro ou do condutor." << endl;
 		}
@@ -175,6 +204,7 @@ void trabalho_condutor()
 
 	cin.get();
 	cin.get();
+	clearScreen();
 }
 
 //Devolve true se ainda puder receber trabalho e false se já tem a semana preenchida

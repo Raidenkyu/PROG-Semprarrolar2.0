@@ -48,11 +48,14 @@ private:
 	unsigned int idLinha;
 	vector <shift> schedule;
 public:
+	//Funções get
 	bus(unsigned int nBus, unsigned int idCondutor, unsigned int idLinha);
 	vector <shift> getSchedule();
 	unsigned int getCondutorID() const;
 	unsigned int getLinhaID() const;
 	unsigned int getBus() const;
+	//Funções set
+	void setSchedule(vector<shift> schedule);
 };
 
 //class com a informação relativa a uma linha
@@ -141,8 +144,8 @@ public:
 };
 
 extern Empresa semprarrolar;
-extern int hora_inicial;
-extern int hora_final;
+extern unsigned int hora_inicial;
+extern unsigned int hora_final;
 
 int linhas_menu();
 int condutores_menu();
