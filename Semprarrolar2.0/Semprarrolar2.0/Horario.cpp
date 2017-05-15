@@ -49,7 +49,7 @@ void imprimir_horario_paragem(class_linha linhas,int indice)
 	primeirotempo = get_tempo(linhas.getTempos(), indice);
 	segundotempo = primeirotempo + get_tempo_total(linhas.getTempos());
 
-	cout << "Linha " << linhas.getID() << endl << "Paragem: " << linhas.getParagens().at(indice) << endl;
+	cout  << endl << endl << "Paragem: " << linhas.getParagens().at(indice) << endl;
 
 	cout << "Sentido direto: " << endl;
 	tempo1 += primeirotempo;
@@ -70,6 +70,14 @@ void imprimir_horario_paragem(class_linha linhas,int indice)
 			minuto = tempo2 % 60;
 			hora = tempo2 / 60;
 			imprimirhora(hora, minuto);
+			tempo2 += freq;
+		}
+		else
+		{
+			minuto = tempo1 % 60;
+			hora = tempo1 / 60;
+			imprimirhora(hora, minuto);
+			tempo1 += freq;
 			tempo2 += freq;
 		}
 	}
@@ -100,6 +108,14 @@ void imprimir_horario_paragem(class_linha linhas,int indice)
 			minuto = tempo2 % 60;
 			hora = tempo2 / 60;
 			imprimirhora(hora, minuto);
+			tempo2 += freq;
+		}
+		else
+		{
+			minuto = tempo1 % 60;
+			hora = tempo1 / 60;
+			imprimirhora(hora, minuto);
+			tempo1 += freq;
 			tempo2 += freq;
 		}
 	}
@@ -134,11 +150,12 @@ void horario_linha()
 				cout << "Erro. Introduziu um valor inválido. Só pode introduzir números inteiros" << endl;
 			}
 		}
-
+		
 		for (unsigned int i = 0; i < linhas.size(); i++)
 		{
 			if (linhaid == linhas.at(i).getID())
 			{
+				cout << "Linha " << linhas.at(i).getID();
 				int tempototal = get_tempo_total(linhas.at(i).getTempos());
 				for (unsigned int j = 0; j < linhas.at(i).getParagens().size(); j++)
 				{
