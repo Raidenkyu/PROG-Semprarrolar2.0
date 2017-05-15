@@ -11,6 +11,31 @@ Empresa semprarrolar("Semprarrolar", "Input_Condutores.txt", "Input_Linhas.txt")
 unsigned int hora_inicial = 7;  //variáveis globais para todos os .cpp
 unsigned int hora_final = 19;   //Definem a hora inicial de trabalho de todas as linha e a hora em que encerram
 
+void localizar_ficheiros()
+{
+	clearScreen();
+	string lines_filename, drivers_filename;
+	cout << "   _____                                               _            " << endl;
+	cout << "  / ____|                                             | |           " << endl;
+	cout << " | (___   ___ _ __ ___  _ __  _ __ __ _ _ __ _ __ ___ | | __ _ _ __ " << endl;
+	cout << "  \\___ \\ / _ \\ '_ ` _ \\| '_ \\| '__/ _` | '__| '__/ _ \\| |/ _` | '__|" << endl;
+	cout << "  ____) |  __/ | | | | | |_) | | | (_| | |  | | | (_) | | (_| | |   " << endl;
+	cout << " |_____/ \\___|_| |_| |_| .__/|_|  \\__,_|_|  |_|  \\___/|_|\\__,_|_|   " << endl;
+	cout << "                       | |                                          " << endl;
+	cout << "                       |_|                                          " << endl << endl << endl;
+	cout << "Antes de começar a usufruir deste software, indique onde pretende guardar a informação" << endl;
+	cout << "Indique o endereço e o nome dos ficheiros para guardar a informação das linhas e condutores" << endl;
+	cout << "Caso esse ficheiro já possua dados, essa informação será importada" << endl << endl;
+	cout << "Introduza a localização e nome do ficheiro que contém a informação das linhas";
+	cout << endl << "Ficheiro das linhas: ";
+	getline(cin, lines_filename);
+	cout << "Introduza a localização do ficheiro que contém a informação dos condutores";
+	cout << endl << "Ficheiro dos condutores: ";
+	getline(cin, drivers_filename);
+	semprarrolar.setFichLines(lines_filename);
+	semprarrolar.setFichDrivers(drivers_filename);
+}
+
 int menu_principal()
 {
 	clearScreen();
@@ -80,6 +105,7 @@ int menu_principal()
 int main()
 {
 	SetPTchar();
+	localizar_ficheiros();
 	menu_principal();
 	guardar_linhas(semprarrolar.getFichLines());
 	guardar_condutores(semprarrolar.getFichDrivers());

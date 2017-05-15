@@ -93,8 +93,18 @@ void trabalho_condutor()
 	{
 		visualizar_condutor(semprarrolar.getCondutores().at(i));
 	}
-	cout << "ID do Condutor: ";
-	cin >> idCondutor;
+	while (true) {
+		cout << "ID do Condutor: ";
+		cin >> idCondutor;
+		if (cin.good())
+			break;
+		else
+		{
+			cin.clear();
+			cin.ignore(INT_MAX, '\n');
+			cout << "Erro. Introduziu um valor inválido. Só pode introduzir números inteiros" << endl;
+		}
+	}
 	cout << "Trabalho do condutor indicado: " << endl;
 	for (unsigned int i = 0; i < semprarrolar.getCondutores().size(); i++)
 	{
@@ -111,8 +121,19 @@ void trabalho_condutor()
 	{
 		visualizar_linha(semprarrolar.getLinhas().at(i));
 	}
-	cout << "ID da Linha: ";
-	cin >> idlinha;
+	while (true)
+	{
+		cout << "ID da Linha: ";
+		cin >> idlinha;
+		if (cin.good())
+			break;
+		else
+		{
+			cin.clear();
+			cin.ignore(INT_MAX, '\n');
+			cout << "Erro. Introduziu um valor inválido. Só pode introduzir números inteiros" << endl;
+		}
+	}
 	int existe = proc_linha(semprarrolar.getLinhas(), idlinha);
 	if (existe != -1)
 	{
@@ -125,18 +146,48 @@ void trabalho_condutor()
 				cout << "Horario " << j + 1 << " : " << autocarrinho.getSchedule().at(j).getInicio() << "->" << autocarrinho.getSchedule().at(j).getFim() << endl;
 			}
 		}
-		cout << "Indique o autocarro onde pretende criar um novo turno: ";
-		cin >> idautocarro;
+		while (true) {
+			cout << "Indique o autocarro onde pretende criar um novo turno: ";
+			cin >> idautocarro;
+			if (cin.good())
+				break;
+			else
+			{
+				cin.clear();
+				cin.ignore(INT_MAX, '\n');
+				cout << "Erro. Introduziu um valor inválido. Só pode introduzir números inteiros" << endl;
+			}
+		}
 		idautocarro--;
 		bus autocarrinho = semprarrolar.getLinhas().at(existe).getAutocarros().at(idautocarro);
 		ilinha = existe;
 		ibus = idautocarro;
 		cout << "Indique a hora inicial e a hora final do turno" << endl;
 		cout << "Aviso: A empresa só trabalha das 7 às 19" << endl;
-		cout << "Primeira hora: ";
-		cin >> hora1;
-		cout << "Segunda hora: ";
-		cin >> hora2;
+		while (true) {
+			cout << "Primeira hora: ";
+			cin >> hora1;
+			if (cin.good())
+				break;
+			else
+			{
+				cin.clear();
+				cin.ignore(INT_MAX, '\n');
+				cout << "Erro. Introduziu um valor inválido. Só pode introduzir números inteiros" << endl;
+			}
+		}
+		while (true) {
+			cout << "Segunda hora: ";
+			cin >> hora2;
+			if (cin.good())
+				break;
+			else
+			{
+				cin.clear();
+				cin.ignore(INT_MAX, '\n');
+				cout << "Erro. Introduziu um valor inválido. Só pode introduzir números inteiros" << endl;
+			}
+		}
 		bool pode = true;
 		if (hora1 < hora_inicial || hora2 > hora_final)
 			pode = false;
