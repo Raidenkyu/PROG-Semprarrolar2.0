@@ -69,7 +69,7 @@ void class_condutor::setCondutor(unsigned int ID, string nome, unsigned int turn
 }
 
 // Passar inf do ficheiro todo para classes. Devolve um vector de classes de condutores
-vector<class_condutor> ler_condutores(string drivers_filename)
+void ler_condutores(string drivers_filename)
 {
 	ifstream drivers_file(drivers_filename);
 	char comma;
@@ -99,6 +99,7 @@ vector<class_condutor> ler_condutores(string drivers_filename)
 			c1.setCondutor(ID, nome, turno, max, descanso);
 			vector_condutores.push_back(c1);
 			ss1.clear();
+			semprarrolar.setCondutores(vector_condutores);
 		}
 	}
 	else
@@ -108,7 +109,6 @@ vector<class_condutor> ler_condutores(string drivers_filename)
 		cout << "Pressione Enter para continuar" << endl;
 		cin.get();
 	}
-	return vector_condutores;
 }
 // Imprimir condutor mandando uma class de condutor
 void visualizar_condutor(class_condutor c1)

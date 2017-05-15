@@ -106,6 +106,8 @@ int main()
 {
 	SetPTchar();
 	localizar_ficheiros();
+	ler_condutores(semprarrolar.getFichDrivers());
+	ler_linhas(semprarrolar.getFichLines());
 	menu_principal();
 	guardar_linhas(semprarrolar.getFichLines());
 	guardar_condutores(semprarrolar.getFichDrivers());

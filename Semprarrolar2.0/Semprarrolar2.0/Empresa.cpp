@@ -8,8 +8,6 @@ Empresa::Empresa(string nome, string fichCondutores, string fichLinhas)
 	nome_empresa = nome;
 	FichDrivers = fichCondutores;
 	FichLines = fichLinhas;
-	vector_condutores = ler_condutores(fichCondutores);
-	vector_linhas = ler_linhas(fichLinhas);
 }
 // Get Informação------------------------------------------------------
 vector <class_linha> Empresa::getLinhas()

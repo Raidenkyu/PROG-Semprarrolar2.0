@@ -62,7 +62,7 @@ void class_linha::setLinha(unsigned int ID, unsigned int freq, vector<string> pa
 }
 
 // Num Vector de linhas guardar a informação toda do ficheiro linhas
-vector<class_linha> ler_linhas(string lines_filename)
+void ler_linhas(string lines_filename)
 {
 	ifstream Lines_file(lines_filename);
 	char comma;
@@ -138,6 +138,7 @@ vector<class_linha> ler_linhas(string lines_filename)
 			vector_linhas.push_back(l1);
 			vector_paragens.clear();
 			vector_tempos.clear();
+			semprarrolar.setLinhas(vector_linhas);
 		}
 	}
 	else
@@ -147,7 +148,6 @@ vector<class_linha> ler_linhas(string lines_filename)
 		cout << "Pressione Enter para continuar" << endl;
 		cin.get();
 	}
-	return vector_linhas;
 }
 
 // Imprimir um Linha
