@@ -165,3 +165,4 @@ void guardar_condutores(string drivers_filename);
 int periodo_disponivel();
 void select_sort(vector<trajeto> &v);
 int calcula_trajeto();
+void imprimirhora(int hora, int minuto);

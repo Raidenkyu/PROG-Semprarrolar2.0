@@ -104,29 +104,36 @@ void lista_periodos(bus b1)
 		cout << "Este autocarro encontra-se desocupado o dia todo" << endl;
 	else
 	{
-		if (hora_inicial * 60 != b1.getSchedule().at(1).getInicio())
+		if (hora_inicial != b1.getSchedule().at(0).getInicio())
 		{
-			hora = b1.getSchedule().at(1).getInicio() / 60;
-			minuto = b1.getSchedule().at(1).getInicio() % 60;
-			cout << setw(2) << setfill('0') << hora_inicial << ":" << 0 << " -> " << hora << ":" << minuto << endl;
+			hora = b1.getSchedule().at(0).getInicio();
+			minuto = b1.getSchedule().at(0).getInicio()*60 % 60;
+			imprimirhora(hora_inicial, 0);
+			cout << " -> ";
+			imprimirhora(hora, minuto);
+			cout << endl;
 		}
 		for (unsigned int i = 0; i < b1.getSchedule().size() - 1; i++)
 		{
 			if (b1.getSchedule().at(i).getFim() != b1.getSchedule().at(i + 1).getInicio())
 			{
-				hora = b1.getSchedule().at(i).getFim() / 60;
-				minuto = b1.getSchedule().at(i).getFim() % 60;
-				cout << setw(2) << setfill('0') << hora << ":" << minuto << " -> ";
-				hora = b1.getSchedule().at(i).getInicio() / 60;
-				minuto = b1.getSchedule().at(i).getInicio() % 60;
-				cout << setw(2) << setfill('0') << hora << ":" << minuto << endl;
+				hora = b1.getSchedule().at(i).getFim();
+				minuto = b1.getSchedule().at(i).getFim()*60 % 60;
+				imprimirhora(hora, minuto);
+				cout << " -> ";
+				hora = b1.getSchedule().at(i+1).getInicio();
+				minuto = b1.getSchedule().at(i+1).getInicio()*60 % 60;
+				imprimirhora(hora, minuto);
+				cout << endl;
 			}
 		}
-		if (b1.getSchedule().at(b1.getSchedule().size() - 1).getFim() != hora_final * 60)
+		if (b1.getSchedule().at(b1.getSchedule().size() - 1).getFim() != hora_final)
 		{
-			hora = b1.getSchedule().at(b1.getSchedule().size() - 1).getFim() / 60;
-			minuto = b1.getSchedule().at(b1.getSchedule().size() - 1).getFim() % 60;
-			cout << setw(2) << setfill('0') << hora << ":" << minuto << " -> " << hora_final << ":" << 0;
+			hora = b1.getSchedule().at(b1.getSchedule().size() - 1).getFim();
+			minuto = b1.getSchedule().at(b1.getSchedule().size() - 1).getFim()*60 % 60;
+			imprimirhora(hora, minuto);
+			cout << " -> ";
+			imprimirhora(hora_final, 0);
 		}
 	}
 	cout << endl << endl << "Pressione qualque tecla para continuar" << endl;

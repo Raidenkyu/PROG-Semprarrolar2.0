@@ -105,7 +105,7 @@ int menu_principal()
 int main()
 {
 	SetPTchar();
-	localizar_ficheiros();
+	//localizar_ficheiros();
 	ler_condutores(semprarrolar.getFichDrivers());
 	ler_linhas(semprarrolar.getFichLines());
 	menu_principal();

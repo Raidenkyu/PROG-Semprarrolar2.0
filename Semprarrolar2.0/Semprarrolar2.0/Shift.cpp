@@ -58,17 +58,17 @@ void visualizar_trabalho(class_condutor c1)
 		cout << "+-------------+----------------+-----------------+----------------+-------------+" << endl;
 		for (unsigned int i = 0; i < c1.getShifts().size(); i++)
 		{
-			hi = c1.getShifts().at(i).getInicio() / 60;
-			mi = c1.getShifts().at(i).getInicio() % 60;
-			hf = c1.getShifts().at(i).getFim() / 60;
-			mf = c1.getShifts().at(i).getFim() % 60;
+			hi = c1.getShifts().at(i).getInicio();
+			mi = c1.getShifts().at(i).getInicio()*60 % 60;
+			hf = c1.getShifts().at(i).getFim();
+			mf = c1.getShifts().at(i).getFim()*60 % 60;
 			cout << "| " << setw(11) << c1.getShifts().at(i).getLinha() << " | "
 				<< setw(14) << c1.getShifts().at(i).getCondutor() << " | "
 				<< setw(15) << c1.getShifts().at(i).getBus() << " | "
-				<< setw(7) << hi << ":" << setw(6) << left << mi << " | "
+				<< setw(7) << right << hi << ":" << setw(6) << left << mi << " | "
 				<< setw(5) << right << hf << ":" << setw(5) << left << mf << " |" << endl;
+			cout << "+-------------+----------------+-----------------+----------------+-------------+" << endl;
 		}
-		cout << "+-------------+----------------+-----------------+----------------+-------------+" << endl;
 	}
 	else cout << "Este condutor ainda não tem nenhum trabalho atribuído" << endl;
 	cout << endl;
@@ -190,7 +190,10 @@ void trabalho_condutor()
 		}
 		bool pode = true;
 		if (hora1 < hora_inicial || hora2 > hora_final)
+		{
 			pode = false;
+			cout << "O horario que inseriu não esta entre as 7 e as 19";
+		}
 		total = 0;
 		for (unsigned int i = 0; i < condutor.getShifts().size(); i++)
 		{
@@ -199,10 +202,15 @@ void trabalho_condutor()
 			else
 			{
 				pode = false;
+				cout << "O horario que inseriu esta entre outro horario e o seu tempo de descanso.";
 			}
 			total = total + condutor.getShifts().at(i).getFim() - condutor.getShifts().at(i).getInicio();
 		}
-		if (total >= condutor.getMax())pode = false;
+		if (total * 7 >= condutor.getMax())
+		{
+			pode = false;
+			cout << "O condutor já esta a trabalhar o numero maximo de horas";
+		}
 		for (unsigned int i = 0; i < autocarrinho.getSchedule().size(); i++)
 		{
 			if (autocarrinho.getSchedule().at(i).getInicio() < hora1 && autocarrinho.getSchedule().at(i).getFim() < hora1);
@@ -210,12 +218,13 @@ void trabalho_condutor()
 			else
 			{
 				pode = false;
+				cout << "O horario inserido esta sobreposto a um outro horario de autocarro";
 			}
 		}
 		if (pode)
 		{
 			total += hora2 - hora1;
-			if (total >= condutor.getMax())pode = false;
+			if (total *7>= condutor.getMax())pode = false;
 			else
 			{
 				if (hora2 - hora1 <= condutor.getTurno())
@@ -247,10 +256,6 @@ void trabalho_condutor()
 				}
 			}
 		}
-		if(!pode)
-		{
-			cout << "O horario que inseriu já se encontra ocupado no horario do autocarro ou do condutor." << endl;
-		}
 	}
 
 	cin.get();
@@ -267,7 +272,6 @@ bool disponivel(class_condutor c1)
 		tempo += c1.getShifts().at(i).getFim() - c1.getShifts().at(i).getInicio();
 	}
 	tempo *= 7;
-	tempo = (int) ceil(((double) tempo) / 60);
 	if (tempo >= c1.getMax())
 		return false;
 	else return true;
